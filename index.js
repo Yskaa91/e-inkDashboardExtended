@@ -402,7 +402,7 @@ const displayData = {
 		'signalkPath': 'environment.wind.speedApparent',
 		'label': dashboardWindSpeedTXT+', '+dashboardWindSpeedMesTXT+':',
 		'precision' : 0,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
 		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
@@ -425,7 +425,7 @@ const displayData = {
 		'signalkPath': 'environment.wind.speedTrue',	// Wind speed over water (as calculated from speedApparent and vessel's speed through water)
 		'label': dashboardTrueWindSpeedTXT+', '+dashboardWindSpeedMesTXT+':',
 		'precision' : 1,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
 		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
@@ -455,7 +455,7 @@ const displayData = {
 		'signalkPath': 'environment.wind.speedTrue',	// Wind speed over water (as calculated from speedApparent and vessel's speed through water)
 		'label': dashboardTrueWindSpeedTXT+', '+dashboardWindSpeedMesTXT+':',
 		'precision' : 1,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
 		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
@@ -480,7 +480,7 @@ const displayData = {
 		'signalkPath': 'environment.wind.speedOverGround',
 		'label': dashboardTrueWindSpeedTXT+', '+dashboardWindSpeedMesTXT+':',
 		'precision' : 0,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
 		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
@@ -504,7 +504,7 @@ const displayData = {
 		'signalkPath': 'environment.wind.speedTrue',	// Wind speed over water (as calculated from speedApparent and vessel's speed through water)
 		'label': dashboardTrueWindSpeedTXT+', '+dashboardWindSpeedMesTXT+':',
 		'precision' : 1,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
 		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
@@ -528,7 +528,7 @@ Addition to the coordinates of the target.
 		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
 	},
 `;
-      / *Prevention of clashes, requires collision-deetector */;
+      /*Prevention of clashes, requires collision-deetector */;
       optionsjs += `
 	'collisions' : {
 		'signalkPath': 'notifications.danger.collision',
@@ -640,7 +640,7 @@ Addition to the coordinates of the target.
 		'signalkPath': 'navigation.speedOverGround',
 		'label': dashboardSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
-		'multiplicator' : ${(60 * 60) / 1000},
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
@@ -652,7 +652,7 @@ Addition to the coordinates of the target.
 		'signalkPath': 'navigation.speedThroughWater',
 		'label': dashboardVaterSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
-		'multiplicator' : ${(60 * 60) / 1000},
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
@@ -824,7 +824,7 @@ Addition to the coordinates of the target.
 		'signalkPath': 'navigation.speedOverGround',
 		'label': dashboardTrueWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
@@ -837,7 +837,7 @@ Addition to the coordinates of the target.
 		'signalkPath': 'environment.wind.speedTrue',
 		'label': dashboardWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
-		'multiplicator' : 1,
+		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
