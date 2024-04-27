@@ -820,8 +820,8 @@ Addition to the coordinates of the target.
         } else if (option.feature.includes("TWS")) {
           /* speed */
           optionsjs += `
-	'speed' : {
-		'signalkPath': 'navigation.speedOverGround',
+	'windSpeedTrue' : {
+		'signalkPath': 'navigation.wind.speedTrue',
 		'label': dashboardTrueWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1.94384,
@@ -833,8 +833,8 @@ Addition to the coordinates of the target.
         } else if (option.feature.includes("AWS")) {
           /* speed */
           optionsjs += `
-	'speed' : {
-		'signalkPath': 'environment.wind.speedTrue',
+	'windSpeedApparent' : {
+		'signalkPath': 'environment.wind.speedApparent ',
 		'label': dashboardWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1.94384,

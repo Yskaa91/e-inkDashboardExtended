@@ -300,7 +300,7 @@ function display(changedTPV) {
           mobMark.style.display = "none";
         }
         break;
-		
+
       /* Drawing angles*/
       case "propRevolutions0":
       case "propRevolutions1":
@@ -445,6 +445,8 @@ function display(changedTPV) {
       case "airPressure":
       case "airHumidity":
       case "waterTemperature":
+	  case "windSpeedTrue":
+      case "windSpeedApparent":
 
       default:
         if (!displayData[tpvName].DOMid) break; // This parameter is requested, but should not be shown
