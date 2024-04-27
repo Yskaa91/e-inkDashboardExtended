@@ -84,7 +84,7 @@ module.exports = function (app) {
             type: "string",
             title: "Will be displayed on the left top corner:",
             enum: [
-              "Speed ower ground (SOG)",
+              "Speed over ground (SOG)",
               "Speed through water (STW)",
               "Depth below surface (DBS)",
               "Depth below keel (DBK)",
@@ -98,9 +98,11 @@ module.exports = function (app) {
               "Outside air relative humidity",
               "Water temperature",
               "Next navigated point",
+              "Apparent wind speed (AWS)",
+              "True wind speed (TWS)",
               "none",
             ],
-            default: "Speed ower ground (SOG)",
+            default: "Speed over ground (SOG)",
           },
           maxRefreshInterval: {
             type: "number",
@@ -121,7 +123,7 @@ module.exports = function (app) {
             type: "string",
             title: "Will be displayed on the right top corner:",
             enum: [
-              "Speed ower ground (SOG)",
+              "Speed over ground (SOG)",
               "Speed through water (STW)",
               "Depth below surface (DBS)",
               "Depth below keel (DBK)",
@@ -135,6 +137,8 @@ module.exports = function (app) {
               "Outside air relative humidity",
               "Water temperature",
               "Next navigated point",
+              "Apparent wind speed (AWS)",
+              "True wind speed (TWS)",
               "none",
             ],
             default: "Depth below transducer (DBT)",
@@ -158,7 +162,7 @@ module.exports = function (app) {
             type: "string",
             title: "Will be displayed on the left bottom corner:",
             enum: [
-              "Speed ower ground (SOG)",
+              "Speed over ground (SOG)",
               "Speed through water (STW)",
               "Depth below surface (DBS)",
               "Depth below keel (DBK)",
@@ -172,9 +176,11 @@ module.exports = function (app) {
               "Outside air relative humidity",
               "Water temperature",
               "Next navigated point",
+              "Apparent wind speed (AWS)",
+              "True wind speed (TWS)",
               "none",
             ],
-            default: "Engine 1 revolutions",
+            default: "Apparent wind speed (AWS)",
           },
           maxRefreshInterval: {
             type: "number",
@@ -195,7 +201,7 @@ module.exports = function (app) {
             type: "string",
             title: "Will be displayed on the right bottom corner:",
             enum: [
-              "Speed ower ground (SOG)",
+              "Speed over ground (SOG)",
               "Speed through water (STW)",
               "Depth below surface (DBS)",
               "Depth below keel (DBK)",
@@ -209,9 +215,11 @@ module.exports = function (app) {
               "Outside air relative humidity",
               "Water temperature",
               "Next navigated point",
+              "Apparent wind speed (AWS)",
+              "True wind speed (TWS)",
               "none",
             ],
-            default: "Engine 1 temperature",
+            default: "True wind speed (TWS)",
           },
           maxRefreshInterval: {
             type: "number",
@@ -806,6 +814,32 @@ Addition to the coordinates of the target.
 		'precision' : 0,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${60 * 60 * 24 * 1000},
+		"DOMid": "${DOMid}"
+	},
+`;
+        } else if (option.feature.includes("TWS")) {
+          /* speed */
+          optionsjs += `
+	'speed' : {
+		'signalkPath': 'navigation.speedOverGround',
+		'label': dashboardTrueWindSpeedATXT+', '+dashboardSpeedMesTXT,
+		'precision' : 1,
+		'multiplicator' : 1,
+		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
+		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		"DOMid": "${DOMid}"
+	},
+`;
+        } else if (option.feature.includes("AWS")) {
+          /* speed */
+          optionsjs += `
+	'speed' : {
+		'signalkPath': 'environment.wind.speedTrue',
+		'label': dashboardWindSpeedATXT+', '+dashboardSpeedMesTXT,
+		'precision' : 1,
+		'multiplicator' : 1,
+		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
+		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;

@@ -165,6 +165,7 @@ function display(changedTPV) {
           }
         }
         break;
+
       case "wspeed":
         if (
           tpv.wangle &&
@@ -188,6 +189,7 @@ function display(changedTPV) {
           }
         }
         break;
+
       case "collisions":
         collisionArrows.innerHTML = "";
         rightBottomBlock.innerHTML = "";
@@ -243,6 +245,7 @@ function display(changedTPV) {
           rightBottomBlock.classList.remove("rightBottomFrameBlinker");
         }
         break;
+
       case "mob":
         if (tpv.mob && tpv.mob.value) {
           // MOB mode is
@@ -297,6 +300,7 @@ function display(changedTPV) {
           mobMark.style.display = "none";
         }
         break;
+		
       /* Drawing angles*/
       case "propRevolutions0":
       case "propRevolutions1":
