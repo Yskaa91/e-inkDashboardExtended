@@ -4,12 +4,12 @@ module.exports = function (app) {
 var plugin = {};
 var versionTXT = '';
 
-plugin.id = 'e-inkDashboardModern';
-plugin.name = 'e-inkDashboardmodern';
+plugin.id = 'e-inkDashboardExtended';
+plugin.name = 'e-inkDashboardExtended';
 plugin.description = 'Dashboard for modern powerful JavaScript-enabled e-ink devices with some Signal K instruments';
 
 plugin.schema = {
-	'title': 'e-inkDashboardModern',
+	'title': 'e-inkDashboardExtended',
 	'type': 'object',
 	'description': '',
 	'properties': {
@@ -226,28 +226,28 @@ plugin.schema = {
 	}
 };
 
-var unsubscribes = []; 	// массив функций с традиционным именем, в котором функции, которые надо выполнить при остановке плагина
+var unsubscribes = []; 	// an array of functions with a traditional name in which the functions that need to be performed when a plugin stop
 
 plugin.start = function (options, restartPlugin) {
 const fs = require("fs");
 
-const createOptionsCount = {'count':0,'timeoutID':null};	// счётчик попыток создания конфига в ожидании появления пути, и id процесса setTimeout
-const createOptionsCountLimit = 50;	// максимальное число попыток создать конфиг. Видимо, нужно, чтобы оно пыталось минут пять? Пока всё включат, пока заведут...
+const createOptionsCount = {'count':0,'timeoutID':null};	// The counter of attempts to create a config in anticipation of the emergence of the path, and the ID of the Settimeout process
+const createOptionsCountLimit = 50;	// The maximum number of attempts to create config.Apparently, it is necessary for it to try about five minutes?While everything is turned on while they start ...
 
 //app.debug('options:',options);
-/* optionsjs создаётся как строка, потому что там указаны имена переменных, в результате во время
-<script src="options.js"></script> эти имена будут заменены на значения. А если
-формировать displayData как объект, а потом JSON.stringify, то такое фокус не пройдёт: невозможно
-сказать, чтобы строка выводилась без кавычек.
-Проблема: юзер может дважды указать одну options. Однако, JSON.parse, вроде, спокойно относится
-к такому, и присваивает последнее значение. Это обстоятельство используется для показа путевой точки:
-один раз на путь navigation.course.nextPoint подписываемся безусловно, для показа метки на круге,
-а потом подписываемся, если указано в конфигурации -- для показа расстояния до точки в углу.
+/* Optionsjs is created as a line, because the names of the variables are indicated, as a result
+<Script SRC = "Options.js"> </ Script> These names will be replaced by values.And if
+form DisplayData as an object, and then json.stringife, then such a focus will not pass: it is impossible
+To say that the line is removed without quotes.
+Problem: The user can twice indicate one Options.However, Json.parse seems to be calm
+To this, and appropriates the last meaning.This circumstance is used to show the waybill:
+Once on the path navigation.course.nextpoint, we certainly subscribe to the label on the lap,
+And then we subscribe, if indicated in the configuration - to show the distance to the point in the corner.
 */
-let optionsjs = '';	// конфиг, загружаемый клиентами как <script src="options.js"></script>
-createOptions();	// собственно генерация конфига
+let optionsjs = '';	// Config, loaded by clients as <SCript SRC = "Options.js"> </ Script>
+createOptions();	// Actually the generation of config
 app.debug('Plugin started');
-// На этом содержательная часть закончилась, дальше - определения функций
+// The substantial part ended on this, further - definitions of functions
 
 
 
@@ -255,58 +255,56 @@ app.debug('Plugin started');
 function createOptions(){
 /**/
 optionsjs = `// Automaticaly created file
-// типы данных, которые, собственно, будем показывать 
-// javascript допускает комментарии в json?
 const displayData = {
-	'pluginStatus' : {	// состояние серверной части
+	'pluginStatus' : {	// The state of the server part
 		'signalkPath': '${plugin.id}',
 		'maxRefreshInterval': 0,
 	},
 `;
-/* Центральный круг, безусловная подписка */
-/* направление */
-// Может быть выбрано только одна величина для track, поэтому есть только track и нет magtrack
+/* Central circle, unconditional subscription */
+/* direction */
+// can only be chosen for Track, so there is only a track and there is no magtrack
 let headingDirection = 'false';
 if(options.trackProp.feature.includes('COG')) {
 	optionsjs += `
-	'track' : {	// course over ground, путевой угол, TPV track в gpsd
+	'track' : {	// course over ground
 		'signalkPath': 'navigation.courseOverGroundTrue',
-		'label': dashboardCourseTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardCourseTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
-	'heading' : {	// heading, курс, в gpsd ATT heading
+	'heading' : {	// heading
 		'signalkPath': 'navigation.headingTrue',
-		'label': dashboardHeadingTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardHeadingTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
 }
 else if(options.trackProp.feature.includes('CGM')) {
 	optionsjs += `
-	'track' : {	// course over ground, путевой угол, track в gpsd
+	'track' : {	// course over ground
 		'signalkPath': 'navigation.courseOverGroundMagnetic',
-		'label': dashboardMagCourseTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardMagCourseTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
-	'heading' : {	// heading, курс
+	'heading' : {	// heading
 		'signalkPath': 'navigation.headingMagnetic',
-		'label': dashboardMagHeadingTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardMagHeadingTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -314,22 +312,22 @@ else if(options.trackProp.feature.includes('CGM')) {
 else if(options.trackProp.feature.includes('HT')) {
 	headingDirection = 'true';
 	optionsjs += `
-	'track' : {	// course over ground, путевой угол, track в gpsd
+	'track' : {	// course over ground
 		'signalkPath': 'navigation.courseOverGroundTrue',
-		'label': dashboardCourseTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardCourseTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 	'heading' : {	// heading, курс
 		'signalkPath': 'navigation.headingTrue',
-		'label': dashboardHeadingTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardHeadingTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -337,22 +335,22 @@ else if(options.trackProp.feature.includes('HT')) {
 else if(options.trackProp.feature.includes('HM')) {
 	headingDirection = 'true';
 	optionsjs += `
-	'track' : {	// course over ground, путевой угол, track в gpsd
+	'track' : {	// course over ground
 		'signalkPath': 'navigation.courseOverGroundMagnetic',
-		'label': dashboardMagCourseTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardMagCourseTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
-	'heading' : {	// heading, курс
+	'heading' : {	// heading
 		'signalkPath': 'navigation.headingMagnetic',
-		'label': dashboardMagHeadingTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardMagHeadingTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -360,31 +358,31 @@ else if(options.trackProp.feature.includes('HM')) {
 else if(options.trackProp.feature.includes('HC')) {
 	headingDirection = 'true';
 	optionsjs += `
-	'track' : {	// course over ground, путевой угол, track в gpsd
+	'track' : {	// course over ground
 		'signalkPath': 'navigation.courseOverGroundMagnetic',
-		'label': dashboardMagCourseTXT,	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardMagCourseTXT,	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
-	'heading' : {	// heading, курс
+	'heading' : {	// heading
 		'signalkPath': 'navigation.headingCompass',
-		'label': dashboardCompassHeadingTXT',	// наименование переменной из internationalisation.js
-		'precision': 0,	// точность показываемой цифры, символов после запятой
-		'multiplicator': ${180/Math.PI}, 	// на что нужно умножить значение для показа
+		'label': dashboardCompassHeadingTXT',	
+		'precision': 0,	
+		'multiplicator': ${180/Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
 };
-/* ветер 
- только один вариант показывается 
+/* wind
+ Only one option is shown
 */
 let trueWind = 'false';
-if(options.wind.direction.feature.includes('AW')) {	// вымпельный ветер
+if(options.wind.direction.feature.includes('AW')) {	// Long wind
 	optionsjs += `
 	'wangle' : {
 		'signalkPath': 'environment.wind.angleApparent',
@@ -458,7 +456,7 @@ else if(options.wind.direction.feature.includes('TWM')) {
 `;
 	}
 }
-else if(options.wind.direction.feature.includes('GWA')) {	// Видимо, это курсовой угол истинного ветра, вычисленный из вымпельного по истинной скорости
+else if(options.wind.direction.feature.includes('GWA')) {	// Apparently, this is the course angle of the true wind, calculated from the penniless at the true speed
 	trueWind = 'true';
 	optionsjs += `
 	'wangle' : {
@@ -482,7 +480,7 @@ else if(options.wind.direction.feature.includes('GWA')) {	// Видимо, эт�
 	},
 `;
 }
-else if(options.wind.direction.feature.includes('TWA')) {	// а это -- по скорости по лагу
+else if(options.wind.direction.feature.includes('TWA')) {	// And this is in speed by the lag
 	trueWind = 'true';
 	optionsjs += `
 	'wangle' : {
@@ -507,33 +505,33 @@ else if(options.wind.direction.feature.includes('TWA')) {	// а это -- по �
 `;
 };
 
-/* Безусловная подписка */
-/* Собственные координаты 
-требуются для режима "Человек за бортом", поскольку там передаётся сообщение только при 
-изменении сведений о MOB, а не о своём относительно MOB, хотя такая возможность есть.
-Думаю, правильно не флудить. Но тогда здесь нужны свои координаты.
-Собственно, они нужны были и для Предупреждения столкновений, но там сообщение передаётся и 
-каждое изменение собственной позиции, и я добавил в сообщение направление и дальность в
-дополнение к координатам цели.
+/* Unconditional subscription */
+/* Own coordinates
+required for the "person overboard" mode, since there is a message only when
+Changing information about MOB, and not about your own relative to MOB, although there is such an opportunity.
+I think not to flood correctly.But then here we need their coordinates.
+Actually, they were needed to prevent clashes, but there the message is transmitted and
+Each change in its own position, and I added a direction and range to the message
+Addition to the coordinates of the target.
 */
 optionsjs += `
 	'position' : {
 		'signalkPath': 'navigation.position',
 		'dataPaths': ['longitude','latitude'],	// если .value в delta не атомарное значение - пути от value до атомарных значений. Для проверки на null.
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 	},
 `;
-/* Предупреждение столкновений, требует наличия collision-detector */
+/ *Prevention of clashes, requires collision-deetector */
 optionsjs += `
 	'collisions' : {
 		'signalkPath': 'notifications.danger.collision',
 		'precision' : 0,
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		// время свежести, миллисек.
+		'fresh': ${(5+options.trackProp.maxRefreshInterval) * 1000},		
 	},
 `;
-/* Человек за бортом, требует наличия GaladrielMap*/
+/* Man overboard, requires Galadrielmap*/
 optionsjs += `
 	'mob' : {
 		'signalkPath': 'notifications.mob',
@@ -541,7 +539,7 @@ optionsjs += `
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
 	},
 `;
-/* Следующая путевая точка на круге */
+/* The next traveling point on the circle */
 optionsjs += `
 	'nextPoint' : {
 		'signalkPath': 'navigation.course.nextPoint',
@@ -551,8 +549,8 @@ optionsjs += `
 	},
 `;
 
-/* Подписка если указано в настройках плагина */
-/* Углы экрана */
+/* Subscription if indicated in the plugin settings */
+/* Screen angles */
 /* Left top value */
 if(options.leftTopBlock.feature !== 'none') buildOptions(options.leftTopBlock,'leftTopBlock');
 /* Right top value */
@@ -562,11 +560,11 @@ if(options.leftBottomBlock.feature !== 'none') buildOptions(options.leftBottomBl
 /* Right bottom value */
 if(options.rightBottomBlock.feature !== 'none') buildOptions(options.rightBottomBlock,'rightBottomBlock');
 
-// закрываем JSON
+// Close Json
 optionsjs += `
 };
 `;
-// Проверка, не изменили ли мы конфиг
+// Check if we have changed config
 let prevOptions = '';
 try {
 	prevOptions = fs.readFileSync(__dirname+'/public/options.js','utf8');
@@ -575,9 +573,9 @@ catch(err) {
 }
 if(optionsjs != prevOptions) {
 	app.debug('Config updated',optionsjs.length,prevOptions.length);
-	fs.writeFileSync(__dirname+'/public/options.js',optionsjs);	// записываем конфиг
+	fs.writeFileSync(__dirname+'/public/options.js',optionsjs);	// Record the config
 
-	// Организуем служебный канал для сообщений клиентам о состоянии сервера, куда сообщаем, что конфиг изменился.
+	// We organize the service channel for messages to customers about the state of the server, where we inform the config has changed.
 	const delta = {
 		"context": "vessels.self",
 		"updates": [
@@ -596,13 +594,13 @@ if(optionsjs != prevOptions) {
 	app.handleMessage(plugin.id,delta);
 };
 
-// Последнее сообщение всегда должно быть с "value": null, потому что оно посылается каждому новому клиенту
-// Это не помогает, потому что клиент должен получить сообщение об изменении конфига, но он его не получит, если не на связи.
-// Например SignalK перегружали и конфиг изменился. Клиент отключился, и подключится через время.
-// А последнее сообщение - пусто.
-// Короче, при рестарте SignalK весь этот механизмик с перезагрузкой конфига не работает.
-// Только при изменении конфигурации плагина или обнаружения пути, при работающем SignalK
-setImmediate(()=>{	// запустим в следующем обороте
+// The last message should always be with "value": null, because it is sent to every new client
+// This does not help, because the client should receive a message about the config change, but he will not receive it, if not in touch.
+// For example, Signalk overloaded and config changed.The client turned off, and connects after time.
+// And the last message is empty.
+// In short, with the SIGNALK restart, all this mechanism with reloading the config does not work.
+// only with a change in the configuration of the plugin or detecting the path, when working signalk
+setImmediate(()=>{	// Launch in the next turnover
 	const delta = {
 		"context": "vessels.self",
 		"updates": [
@@ -625,14 +623,14 @@ setImmediate(()=>{	// запустим в следующем обороте
 
 
 function buildOptions(option,DOMid=null){
-/* дописывает optionsjs величинами для показа в углах экрана */
+/*prepares Optionsjs values for display in the corners of the screen */
 let propulsionPaths=[];
 
-if(option.feature.includes('SOG')) {	/* скорость */
+if(option.feature.includes('SOG')) {	/* speed */
 	optionsjs += `
 	'speed' : {
 		'signalkPath': 'navigation.speedOverGround',
-		'label': dashboardSpeedTXT+', '+dashboardSpeedMesTXT,	// скорость
+		'label': dashboardSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : ${60*60/1000},
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -645,7 +643,7 @@ else if(option.feature.includes('STW')) {
 	optionsjs += `
 	'speed' : {
 		'signalkPath': 'navigation.speedThroughWater',
-		'label': dashboardVaterSpeedTXT+', '+dashboardSpeedMesTXT,	// скорость
+		'label': dashboardVaterSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : ${60*60/1000},
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -654,11 +652,11 @@ else if(option.feature.includes('STW')) {
 	},
 `;
 }
-else if(option.feature.includes('DBS')) {	// глубина
+else if(option.feature.includes('DBS')) {	// depth
 	optionsjs += `
 	'depth' : {
 		'signalkPath': 'environment.depth.belowSurface',
-		'label': dashboardDepthTXT+', '+dashboardDepthMesTXT, 	// глубина
+		'label': dashboardDepthTXT+', '+dashboardDepthMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -671,7 +669,7 @@ else if(option.feature.includes('DBK')) {
 	optionsjs += `
 	'depth' : {
 		'signalkPath': 'environment.depth.belowKeel',
-		'label': dashboardKeelDepthTXT+', '+dashboardDepthMesTXT, 	// глубина
+		'label': dashboardKeelDepthTXT+', '+dashboardDepthMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -684,7 +682,7 @@ else if(option.feature.includes('DBT')) {
 	optionsjs += `
 	'depth' : {
 		'signalkPath': 'environment.depth.belowTransducer',
-		'label': dashboardTransDepthTXT+', '+dashboardDepthMesTXT, 	// глубина
+		'label': dashboardTransDepthTXT+', '+dashboardDepthMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -693,9 +691,9 @@ else if(option.feature.includes('DBT')) {
 	},
 `;
 }
-else if(option.feature.includes('1 revolutions')) {	/* двигатели */
+else if(option.feature.includes('1 revolutions')) {	/* engines */
 	//setTimeout(()=>{app.debug('двигатель',app.getSelfPath('propulsion'))},3000);
-	if(checkPropulsionPath() && propulsionPaths[0]) {	// вообще-то, оно по логике здесь уже всегда есть, но для единообразия
+	if(checkPropulsionPath() && propulsionPaths[0]) {	// actually, it is always here by logic here, but for uniformity
 		optionsjs += `
 	'propRevolutions0' : {
 		'signalkPath': '${propulsionPaths[0]}.revolutions',
@@ -711,7 +709,7 @@ else if(option.feature.includes('1 revolutions')) {	/* двигатели */
 }
 else if(option.feature.includes('1 temperature')) {
 	// Temperature in Kelvin!!!
-	if(checkPropulsionPath() && propulsionPaths[0]) {	// вообще-то, оно по логике здесь уже всегда есть, но для единообразия
+	if(checkPropulsionPath() && propulsionPaths[0]) {	// actually, it is always here by logic here, but for uniformity
 		optionsjs += `
 	'propTemperature0' : {
 		'signalkPath': '${propulsionPaths[0]}.temperature',
@@ -754,7 +752,7 @@ else if(option.feature.includes('2 temperature')) {
 `;
 	};
 }
-else if(option.feature.includes('air temperature')) {	/* температура воздуха */ 
+else if(option.feature.includes('air temperature')) {	/* air temperature */
 	// Temperature in Kelvin!!!
 	optionsjs += `
 	'airTemperature' : {
@@ -767,7 +765,7 @@ else if(option.feature.includes('air temperature')) {	/* температура 
 	},
 `;
 }
-else if(option.feature.includes('air pressure')) {	/* давление воздуха */
+else if(option.feature.includes('air pressure')) {	/* air pressure */
 	optionsjs += `
 	'airPressure' : {
 		'signalkPath': 'environment.outside.pressure',
@@ -780,7 +778,7 @@ else if(option.feature.includes('air pressure')) {	/* давление возд�
 	},
 `;
 }
-else if(option.feature.includes('humidity')) {	/* влажность */
+else if(option.feature.includes('humidity')) {	/* humidity */
 	optionsjs += `
 	'airHumidity' : {
 		'signalkPath': 'environment.outside.relativeHumidity',
@@ -792,7 +790,7 @@ else if(option.feature.includes('humidity')) {	/* влажность */
 	},
 `;
 }
-else if(option.feature.includes('ater temperature')) {	/* температура воды */
+else if(option.feature.includes('ater temperature')) {	/* water temperature*/
 	optionsjs += `
 	'waterTemperature' : {
 		'signalkPath': 'environment.water.temperature',
@@ -804,7 +802,7 @@ else if(option.feature.includes('ater temperature')) {	/* температура
 	},
 `;
 }
-else if(option.feature.includes('navigated point')) {	/* следующая путевая точка на круге и в углу */
+else if(option.feature.includes('navigated point')) {	/* The next track point is on a circle and in the corner */
 	optionsjs += `
 	'nextPoint' : {
 		'signalkPath': 'navigation.course.nextPoint',
@@ -852,16 +850,14 @@ if(propulsionPaths[1]){
 
 function checkPropulsionPath(){
 if(!propulsionPaths.length){
-	// функция может быть запущена несколько раз (по разу на каждый угол), и с предыдущего запуска всё уже.
+	// The function can be launched several times (once at each corner), and from the previous launch everything is already.
 	const realPropulsionPath = app.getSelfPath('propulsion');
 	if(!realPropulsionPath) {
-		if(createOptionsCount.timeoutID) return false;	// ожидание уже запущено
-		// запуск ожидания появления пути
+		if(createOptionsCount.timeoutID) return false;	// Waiting is already running
+		// Launching the waiting for the emergence of the path
 		let timeout = 2000;
-		// Сперва будем часто пытаться, потом редко
+		// First we will often try, then rarely
 		if(createOptionsCount.count>10) timeout = 10000;
-		//app.debug('Пути нет',createOptionsCount.count*timeout/1000,'сек.');
-		//app.debug('timeout=',timeout,'на самом деле прошло',(Date.now()-createOptionsCount.timestamp)/1000,'сек.');
 		if(createOptionsCount.count > createOptionsCountLimit){
 			clearTimeout(createOptionsCount.timeoutID);	// ну упс
 			createOptionsCount.timeoutID = null;
@@ -878,7 +874,6 @@ if(!propulsionPaths.length){
 	for(const propID in realPropulsionPath){
 		propulsionPaths.push('propulsion.'+propID)
 	};
-	//app.debug('Путь есть!');
 };
 return true;
 }; //			end function checkPropulsionPath
