@@ -28,13 +28,13 @@
 	"dashboardPropTemperatureTXT" : "engine temperature",
 	"dashboardTemperatureMesTXT" : "°C",
 	"dashboarAirTemperatureTXT" : "Current outside air temperature",
-	"dashboarAirPressureTXT" : "Current outside air ambient pressure",
+	"dashboardAirPressureTXT" : "Current outside air ambient pressure",
 	"dashboardAirPressureMesTXT" : "hPa",
-	"dashboarAirHumidityTXT" : "Current outside air relative humidity",
+	"dashboardAirHumidityTXT" : "Current outside air relative humidity",
 	"dashboardAirHumidityMesTXT" : "%",
-	"dashboarWaterTemperatureTXT" : "Current water temperature",
+	"dashboardWaterTemperatureTXT" : "Current water temperature",
 
-	"dashboarNextPointTXT" : "Distance to the next point of navigate",
+	"dashboardNextPointTXT" : "Distance to the next point of navigate",
 	"dashboarNextPointMesMTXT" : "m.",
 	"dashboarNextPointMesKMTXT" : "km."
 }

@@ -773,7 +773,7 @@ Addition to the coordinates of the target.
           optionsjs += `
 	'airPressure' : {
 		'signalkPath': 'environment.outside.pressure',
-		'label': dashboarAirPressureTXT+', '+dashboardAirPressureMesTXT,
+		'label': dashboardAirPressureTXT+', '+dashboardAirPressureMesTXT,
 		'precision' : 0,
 		'multiplicator' : 0.01,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -786,7 +786,7 @@ Addition to the coordinates of the target.
           optionsjs += `
 	'airHumidity' : {
 		'signalkPath': 'environment.outside.relativeHumidity',
-		'label': dashboarAirHumidityTXT+', '+dashboardAirHumidityMesTXT,
+		'label': dashboardAirHumidityTXT+', '+dashboardAirHumidityMesTXT,
 		'precision' : 0,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(30 + option.maxRefreshInterval) * 1000},
@@ -798,7 +798,7 @@ Addition to the coordinates of the target.
           optionsjs += `
 	'waterTemperature' : {
 		'signalkPath': 'environment.water.temperature',
-		'label': dashboarWaterTemperatureTXT+', '+dashboardTemperatureMesTXT,
+		'label': dashboardWaterTemperatureTXT+', '+dashboardTemperatureMesTXT,
 		'precision' : 0,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(30 + option.maxRefreshInterval) * 1000},
@@ -810,7 +810,7 @@ Addition to the coordinates of the target.
           optionsjs += `
 	'nextPoint' : {
 		'signalkPath': 'navigation.course.nextPoint',
-		'label': dashboarNextPointTXT,
+		'label': dashboardNextPointTXT,
 		'precision' : 0,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${60 * 60 * 24 * 1000},
@@ -822,7 +822,7 @@ Addition to the coordinates of the target.
           optionsjs += `
 	'speed' : {
 		'signalkPath': 'navigation.speedOverGround',
-		'label': dashboardTrueWindSpeedATXT+', '+dashboardSpeedMesTXT,
+		'label': dashboardTrueWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
@@ -835,7 +835,7 @@ Addition to the coordinates of the target.
           optionsjs += `
 	'speed' : {
 		'signalkPath': 'environment.wind.speedTrue',
-		'label': dashboardWindSpeedATXT+', '+dashboardSpeedMesTXT,
+		'label': dashboardWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},

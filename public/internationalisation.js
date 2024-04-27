@@ -30,13 +30,13 @@
 	var dashboardPropTemperatureTXT = 'engine temperature';
 	var dashboardTemperatureMesTXT = '°C';
 	var dashboarAirTemperatureTXT = 'Current outside air temperature';
-	var dashboarAirPressureTXT = 'Current outside air ambient pressure';
+	var dashboardAirPressureTXT = 'Current outside air ambient pressure';
 	var dashboardAirPressureMesTXT = 'hPa';
-	var dashboarAirHumidityTXT = 'Current outside air relative humidity';
+	var dashboardAirHumidityTXT = 'Current outside air relative humidity';
 	var dashboardAirHumidityMesTXT = '%';
-	var dashboarWaterTemperatureTXT = 'Current water temperature';
+	var dashboardWaterTemperatureTXT = 'Current water temperature';
 	
-	var dashboarNextPointTXT = 'Distance to the next point of navigate';
+	var dashboardNextPointTXT = 'Distance to the next point of navigate';
 	var dashboarNextPointMesMTXT = 'm.';
 	var dashboarNextPointMesKMTXT = 'km.';
 //	var dashboardDepthMenuTXT = 'Shallow';
@@ -103,12 +103,12 @@ if (xhr.status == 200) { 	// Успешно
 		dashboardPropTemperatureTXT,
 		dashboardTemperatureMesTXT,
 		dashboarAirTemperatureTXT,
-		dashboarAirPressureTXT,
+		dashboardAirPressureTXT,
 		dashboardAirPressureMesTXT,
-		dashboarAirHumidityTXT,
+		dashboardAirHumidityTXT,
 		dashboardAirHumidityMesTXT,
-		dashboarWaterTemperatureTXT,
-		dashboarNextPointTXT,
+		dashboardWaterTemperatureTXT,
+		dashboardNextPointTXT,
 		dashboarNextPointMesMTXT,
 		dashboarNextPointMesKMTXT
 	} = i18n);	// () тут обязательно, потому что не var {} = obj, и кривой JavaScript воспринимает {} как блок кода;
