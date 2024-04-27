@@ -291,32 +291,6 @@
             bytpvName: for (let tpvName in displayData) {
               // displayData is in options.js
               if (prop.path != displayData[tpvName].signalkPath) continue;
-              // Verification of NULL
-              if (displayData.dataPaths) {
-                for (const dataPath in displayData.dataPaths) {
-                  if (
-                    isValueNull(tpvName + "." + dataPath, prop.value[dataPath])
-                  ) {
-                    // Should you interpret 0 as null
-                    console.log(
-                      "Property",
-                      tpvName + "." + dataPath,
-                      "is interpreted as null instead 0"
-                    );
-                    prop.value[dataPath] = null;
-                  }
-                }
-              } else {
-                if (isValueNull(tpvName, prop.value)) {
-                  // Should you interpret 0 as null
-                  console.log(
-                    "Property",
-                    tpvName,
-                    "is interpreted as null instead 0"
-                  );
-                  prop.value = null;
-                }
-              }
               // Check for freshness
               if (!tpv[tpvName]) {
                 tpv[tpvName] = {};

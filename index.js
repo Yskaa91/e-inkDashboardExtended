@@ -834,7 +834,7 @@ Addition to the coordinates of the target.
           /* speed */
           optionsjs += `
 	'windSpeedApparent' : {
-		'signalkPath': 'environment.wind.speedApparent ',
+		'signalkPath': 'environment.wind.speedApparent',
 		'label': dashboardWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1.94384,
