@@ -831,6 +831,7 @@ if(propulsionPaths[0]){
 	},
 `;
 }
+
 if(propulsionPaths[1]){
 	optionsjs += `
 	'propLabel1' : {

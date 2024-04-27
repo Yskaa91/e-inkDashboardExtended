@@ -92,7 +92,6 @@
 </div>
 <script>
 //compassCard.style.transform = 'rotate(30deg)';
-//console.log(displayData);
 
 var mobPosition=null;	// MOB mode information: marker from GaladrilMap or something else
 var tpv = {};
@@ -129,7 +128,6 @@ doWebsocket(uri) //We launch the listening of the socket and process the resulti
 // Then the definition of functions
 function doWebsocket(uri){
 socket = new WebSocket(uri);
-//console.log('[doWebsocket] try to open socket',socket);
 socket.onopen = websocketOnOpen;
 socket.onmessage = websocketOnMessage;
 socket.onclose = websocketOnClose;
@@ -152,7 +150,7 @@ for(let tpvName in displayData){	// displayData is in options.js
 		"minPeriod": displayData[tpvName].maxRefreshInterval
 	});
 }
-//console.log('[websocketOnOpen] signalKsubscribe:',signalKsubscribe);
+
 event.target.send(JSON.stringify(signalKsubscribe));	// подписываемся
 console.log("Winsocket open: Connection establish with "+uri);
 displayON();
@@ -161,8 +159,7 @@ display();
 
 
 function websocketOnMessage(event) {
-//console.log(event);
-// Получаем исходные данные
+// We get the initial data
 let SKdata;
 try {
 	SKdata = JSON.parse(event.data);	// But just a line is a correct json, and there will be no mistakes if the server has returned not json
@@ -179,17 +176,16 @@ catch(error) {
 if(SKdata.roles) { 	// greeting
 	return;
 }
-// Берём нужные данные
+// We take the necessary data
 let changedTPV = [];	// The list of tpv keys, the values of which received changes, to update them in the interface
 let checksTPV = [];	// TPV key list, for which Setinterval control of freshness is launched
 for(let props of SKdata.updates){
 	if(!props.values) continue;	// I do not know when and why suddenly it may not be.But - it does not happen
 	for(let prop of props.values) {
-		//console.log('[websocketOnMessage] prop:',prop);
 
 		bytpvName: for(let tpvName in displayData){	// displayData is in options.js
 			if(prop.path != displayData[tpvName].signalkPath) continue;
-			// Проверка на null
+			// Verification of NULL
 			if(displayData.dataPaths){
 				for(const dataPath in displayData.dataPaths){
 					if(isValueNull(tpvName+'.'+dataPath,prop.value[dataPath])) {	// Should you interpret 0 as null
@@ -210,7 +206,6 @@ for(let props of SKdata.updates){
 				// We start cleaning data from outdated
 				checksTPV[tpvName] = window.setInterval(chkTPV, displayData[tpvName].fresh-1, tpvName, checksTPV);
 			}
-			//console.log('[websocketOnMessage] tpvName=',tpvName,'prop.path=',prop.path,'prop.value:',prop.value,'displayData[tpvName].multiplicator)=',displayData[tpvName].multiplicator);
 			// Leading to normal dimensions
 			if((prop.value !== null) && displayData[tpvName].multiplicator) tpv[tpvName].value =  prop.value * displayData[tpvName].multiplicator
 			else tpv[tpvName].value =  prop.value;
@@ -220,10 +215,9 @@ for(let props of SKdata.updates){
 		}
 	}
 }
-//console.log('tpv:',tpv);
 
 changedTPV = Array.from(new Set(changedTPV));	// unicue array
-display(changedTPV);	// Собственно рисование данных
+display(changedTPV);	// Actually drawing data
 
 }; // end function websocketOnMessage
 
