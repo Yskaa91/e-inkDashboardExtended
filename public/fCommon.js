@@ -74,36 +74,36 @@ function display(changedTPV) {
         break;
 
       /* Circle drawing */
-      case "track":
+      case "heading":
         compassMessage.style.display = "none";
         if (
-          tpv.track &&
-          tpv.track.value != null &&
-          tpv.track.value != undefined
+          tpv.heading &&
+          tpv.heading.value != null &&
+          tpv.heading.value != undefined
         ) {
           center_icon.style.display = "";
-          if (displayData.track.headingDirection) {
+          if (displayData.heading.trackDirection) {
             if (
-              tpv.heading &&
-              tpv.heading.value != null &&
-              tpv.heading.value != undefined
+              tpv.track &&
+              tpv.track.value != null &&
+              tpv.track.value != undefined
             ) {
               center_marc.style.transform = `rotate(${
-                tpv.track.value - tpv.heading.value
+                tpv.heading.value - tpv.track.value
               }deg)`;
             }
           }
-          compassCard.style.transform = `rotate(${360 - tpv.track.value}deg)`;
+          compassCard.style.transform = `rotate(${360 - tpv.heading.value}deg)`;
           topMessage.innerHTML = `${
-            displayData.track.label
-          } ${tpv.track.value.toFixed(displayData.track.precision)}°`;
+            displayData.heading.label
+          } ${tpv.heading.value.toFixed(displayData.heading.precision)}°`;
         } else {
           // You need to show the card, even if there is no direction, because the wind and mob can be shown on it
           compassCard.style.transform = `rotate(0deg)`;
           center_icon.style.display = "none";
           compassMessage.innerHTML = `<span class="blink" style="font-size:3em;">?</span>`;
           compassMessage.style.display = "";
-          topMessage.innerHTML = `${displayData.track.label} ?`;
+          topMessage.innerHTML = `${displayData.heading.label} ?`;
         }
         if (mobPosition && tpv.position) {
           const mobBearing = bearing(tpv.position.value, mobPosition);
@@ -112,32 +112,32 @@ function display(changedTPV) {
         }
         break;
 
-      case "heading":
+      case "track":
         if (
-          tpv.heading &&
-          tpv.heading.value != null &&
-          tpv.heading.value != undefined
+          tpv.track &&
+          tpv.track.value != null &&
+          tpv.track.value != undefined
         ) {
-          if (displayData.heading.headingDirection) {
+          if (displayData.track.trackDirection) {
             center_icon.style.transform = `rotate(0deg)`;
           } else {
             if (
-              tpv.track &&
-              tpv.track.value != null &&
-              tpv.track.value != undefined
+              tpv.heading &&
+              tpv.heading.value != null &&
+              tpv.heading.value != undefined
             ) {
               center_icon.style.transform = `rotate(${
-                tpv.heading.value - tpv.track.value
+                tpv.track.value - tpv.heading.value
               }deg)`;
             }
           }
-          bottomMessages.heading = `${
-            displayData.heading.label
-          } ${tpv.heading.value.toFixed(displayData.heading.precision)}°`;
+          bottomMessages.track = `${
+            displayData.track.label
+          } ${tpv.track.value.toFixed(displayData.track.precision)}°`;
           updBottomMessages(); // Shows the lower message
         } else {
           center_icon.style.transform = `rotate(0deg)`;
-          delete bottomMessages.heading;
+          delete bottomMessages.track;
           updBottomMessages(); // Shows the lower message
         }
         break;

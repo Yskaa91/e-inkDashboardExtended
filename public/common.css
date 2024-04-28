@@ -1,6 +1,6 @@
 body {
-	--out-width: 66vmin; /* * 1% of the viewport's smaller dimension */
-	--font-size: calc(var(--out-width)/8);	/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries */
+	--out-width: 75vmin; /* * 1% of the viewport's smaller dimension */
+	--font-size: calc(var(--out-width)/7);	/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries */
 	--small-font-size: calc(var(--font-size)*0.7);	/* If you say EM, then the value will be the value, and not the value calculated at this moment.Therefore, it is calculated*/
 	--ltl-font-size: calc(var(--font-size)*0.4);
 	--ltl1-font-size: calc(var(--font-size)*0.3);
@@ -14,7 +14,7 @@ body {
 	In addition, 1FR works as written in the specification, only in Firefox, and in Chrome and Opera
 	The height of the line does not change.
 	*/
-	grid-template-rows: calc(100vh*0.045) 30% 30% 30% calc(100vh*0.045);	
+	grid-template-rows: calc(100vh*0.045) 30% 30% 30% calc(100vh*0.045) calc(100vh*0.045);	
 	/*grid-template-rows: calc(100vh*0.045) 1fr 1fr 1fr calc(100vh*0.045);*/
 
 	/* And this is a percentage of compass calculated, although they should coincide with the height of the landscape screen. */
@@ -59,7 +59,7 @@ body {
 #leftTopBlock {
 	grid-column-start: 1;
 	grid-column-end: 3;
-	grid-row-start: 2;
+	grid-row-start: 1;
 	grid-row-end: 3;
 	font-size: calc(var(--font-size)*1.4);
 	text-align: left;
@@ -81,7 +81,7 @@ body {
 #rightTopBlock {
 	grid-column-start: 4;
 	grid-column-end: 6;
-	grid-row-start: 2;
+	grid-row-start: 1;
 	grid-row-end: 3;
 	/*font-size: var(--font-size);*/
 	font-size: calc(var(--font-size)*1.4);
@@ -105,7 +105,7 @@ body {
 	grid-column-start: 1;
 	grid-column-end: 3;
 	grid-row-start: 4;
-	grid-row-end: 5;
+	grid-row-end: 6;
 	font-size: calc(var(--font-size)*1.4);
 	text-align: left;
 	display: inherit; 
@@ -127,7 +127,7 @@ body {
 	grid-column-start: 4;
 	grid-column-end: 6;
 	grid-row-start: 4;
-	grid-row-end: 5;
+	grid-row-end: 6;
 	font-size: calc(var(--font-size)*1.4);
 	text-align: right;
 	display: inherit; 
@@ -204,8 +204,8 @@ body {
 #mobButton {
 	grid-column-start: 1;
 	grid-column-end: 3;
-	grid-row-start: 5;
-	grid-row-end: 6;
+	grid-row-start: 6;
+	grid-row-end: 7;
 	text-align: left;
 	display: inherit; 
 

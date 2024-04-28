@@ -523,7 +523,7 @@ Addition to the coordinates of the target.
       optionsjs += `
 	'position' : {
 		'signalkPath': 'navigation.position',
-		'dataPaths': ['longitude','latitude'],	// если .value в delta не атомарное значение - пути от value до атомарных значений. Для проверки на null.
+		'dataPaths': ['longitude','latitude'],	// If .value in Delta is not atomic value - the path from Value to atomic values.For verification on NULL.
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
 		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
 	},
