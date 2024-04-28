@@ -82,17 +82,7 @@ function display(changedTPV) {
           tpv.heading.value != undefined
         ) {
           center_icon.style.display = "";
-          if (displayData.heading.trackDirection) {
-            if (
-              tpv.track &&
-              tpv.track.value != null &&
-              tpv.track.value != undefined
-            ) {
-              center_marc.style.transform = `rotate(${
-                tpv.heading.value - tpv.track.value
-              }deg)`;
-            }
-          }
+          
           compassCard.style.transform = `rotate(${360 - tpv.heading.value}deg)`;
           topMessage.innerHTML = `${
             displayData.heading.label
