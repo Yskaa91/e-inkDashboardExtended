@@ -109,14 +109,14 @@ function display(changedTPV) {
           tpv.track.value != undefined
         ) {
           if (displayData.track.trackDirection) {
-            center_icon.style.transform = `rotate(0deg)`;
+            center_marc_streak.style.transform = `rotate(0deg)`;
           } else {
             if (
               tpv.heading &&
               tpv.heading.value != null &&
               tpv.heading.value != undefined
             ) {
-              center_icon.style.transform = `rotate(${
+              center_marc_streak.style.transform = `rotate(${
                 tpv.track.value - tpv.heading.value
               }deg)`;
             }
