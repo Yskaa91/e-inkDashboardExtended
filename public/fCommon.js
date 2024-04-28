@@ -82,7 +82,7 @@ function display(changedTPV) {
           tpv.heading.value != undefined
         ) {
           center_icon.style.display = "";
-          
+
           compassCard.style.transform = `rotate(${360 - tpv.heading.value}deg)`;
           topMessage.innerHTML = `${
             displayData.heading.label
@@ -525,6 +525,7 @@ function displayON() {
   console.log("[displayON]");
 
   center_marc.style.display = "";
+  max_upwind_angle.style.display = "";
   topMessage.style.display = "";
   bottomMessage.style.display = "";
   center_icon.style.display = "";
@@ -537,6 +538,7 @@ function displayOFF() {
   console.log("[displayOFF]");
 
   center_marc.style.display = "none";
+  max_upwind_angle.style.display = "none";
   topMessage.style.display = "none";
   bottomMessage.style.display = "none";
   center_icon.style.display = "none";
