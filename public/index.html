@@ -227,7 +227,7 @@
         compassCard.appendChild(windSVGimage); // Repair the wind symbol into the cartoon
       }
 
-      // Поехали
+      // Go
       const uri = `ws://${document.location.host}/signalk/v1/stream?subscribe=none`; // We will subscribe separately
       doWebsocket(uri); //We launch the listening of the socket and process the resulting
 
@@ -308,16 +308,18 @@
                 tmp =
                   prop.value * displayData[tpvName].multiplicator;
               else tmp = prop.value;
-
-              // Check if value changed by more than 3% to prevent refreshing too often
-              if (tmp > 0) {
-                if (Math.abs((tpv[tpvName].value-tmp)/tmp) > 0.03) {
-                  tpv[tpvName].timestamp = Date.parse(props.timestamp);
-                  changedTPV.push(tpvName);
-                }
-              }
               
-              //if(tpvName == 'pluginStatus') console.log('[websocketOnMessage] tpvName=',tpvName,'tpv[tpvName]:',tpv[tpvName]);
+              // Prevent tiny correction of the rotating components -> reduce frame refresh
+              if ((tpvName == "heading" || tpvName == "track" || tpvName == "wangle") && tpv[tpvName].value > 0) {
+                if (Math.abs(tpv[tpvName].value - tmp) > 1.0) {
+                  tpv[tpvName].value = tmp
+                }
+              } else {
+                tpv[tpvName].value = tmp
+              }
+
+              tpv[tpvName].timestamp = Date.parse(props.timestamp);
+              changedTPV.push(tpvName);
             }
           }
         }
