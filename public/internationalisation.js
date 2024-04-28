@@ -16,9 +16,12 @@ var dashboardCollisionAlarmTXT = 'Distance to the nearest navigate danger';
 var dashboardMOBalarmTXT = 'Distance to the MOB';
 var dashboardAlarmDistanceMesTXT = 'm.'
 
-var dashboardWindSpeedTXT = 'Apparent wind';
+var dashboardWindSpeedTXT = 'Apparent wind speed';
 var dashboardWindSpeedMesTXT = 'kn';
-var dashboardTrueWindSpeedTXT = 'True wind';
+var dashboardTrueWindSpeedTXT = 'True wind speed';
+var dashboardWindAngleTXT = 'Apparent wind angle';
+var dashboardTrueWindAngleTXT = 'True wind angle';
+var dashboardWindAngleMesTXT = 'deg';
 
 var dashboardPropStopTXT = 'Engine stopped';
 var dashboardPropRevolutionTXT = 'engine revolutions';

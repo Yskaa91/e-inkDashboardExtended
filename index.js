@@ -100,6 +100,8 @@ module.exports = function (app) {
               "Next navigated point",
               "Apparent wind speed (AWS)",
               "True wind speed (TWS)",
+              "Apparent wind angle (AWA)",
+              "True wind angle (TWA)",
               "none",
             ],
             default: "Speed over ground (SOG)",
@@ -139,6 +141,8 @@ module.exports = function (app) {
               "Next navigated point",
               "Apparent wind speed (AWS)",
               "True wind speed (TWS)",
+              "Apparent wind angle (AWA)",
+              "True wind angle (TWA)",
               "none",
             ],
             default: "Depth below transducer (DBT)",
@@ -178,6 +182,8 @@ module.exports = function (app) {
               "Next navigated point",
               "Apparent wind speed (AWS)",
               "True wind speed (TWS)",
+              "Apparent wind angle (AWA)",
+              "True wind angle (TWA)",
               "none",
             ],
             default: "Apparent wind speed (AWS)",
@@ -217,6 +223,8 @@ module.exports = function (app) {
               "Next navigated point",
               "Apparent wind speed (AWS)",
               "True wind speed (TWS)",
+              "Apparent wind angle (AWA)",
+              "True wind angle (TWA)",
               "none",
             ],
             default: "True wind speed (TWS)",
@@ -837,6 +845,32 @@ Addition to the coordinates of the target.
 		'label': dashboardWindSpeedTXT+', '+dashboardSpeedMesTXT,
 		'precision' : 1,
 		'multiplicator' : 1.94384,
+		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
+		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		"DOMid": "${DOMid}"
+	},
+`;
+        } else if (option.feature.includes("AWA")) {
+          /* speed */
+          optionsjs += `
+	'windAngleApparent' : {
+		'signalkPath': 'environment.wind.angleApparent',
+		'label': dashboardWindAngleTXT+', '+dashboardWindAngleMesTXT,
+		'precision' : 0,
+		'multiplicator' : ${180 / Math.PI},
+		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
+		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		"DOMid": "${DOMid}"
+	},
+`;
+        } else if (option.feature.includes("TWA")) {
+          /* speed */
+          optionsjs += `
+	'windAngleTrue' : {
+		'signalkPath': 'environment.wind.directionTrue',
+		'label': dashboardTrueWindAngleTXT+', '+dashboardWindAngleMesTXT,
+		'precision' : 0,
+		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
 		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
