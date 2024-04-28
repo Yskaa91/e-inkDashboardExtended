@@ -29,7 +29,7 @@ body {
 	grid-column-end: 5;
 	grid-row-start: 1;
 	grid-row-end: 2;
-	font-size: var(--pico-font-size);
+	font-size: calc(var(--pico-font-size)*1.4);
 	text-align: center;
 	
 	/*display:inherit; border:solid green;*/
