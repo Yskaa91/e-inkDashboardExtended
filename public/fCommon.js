@@ -149,8 +149,7 @@ function display(changedTPV) {
               `rotate(${tpv.wangle.value - 90})`
             );
           } else {
-            realWindSymbolViewUpdate(null);
-            delete bottomMessages.wspeed;
+            realWindSymbolViewUpdate(0.1);
             updBottomMessages(); // Shows the lower message
           }
         }
@@ -173,8 +172,7 @@ function display(changedTPV) {
             } ${tpv.wspeed.value.toFixed(displayData.wspeed.precision)}`;
             updBottomMessages(); // Shows the lower message
           } else {
-            realWindSymbolViewUpdate(null);
-            delete bottomMessages.wspeed;
+            realWindSymbolViewUpdate(0.1);
             updBottomMessages(); // Shows the lower message
           }
         }
