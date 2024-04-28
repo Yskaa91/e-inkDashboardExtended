@@ -340,9 +340,9 @@ body {
 	height: var(--out-width);
 	width: auto;
 
-	position: relative;
+	position: absolute;
 	top: 2px;
-	left: 50%;
+	left: calc(var(--out-width)/2 + 2px);
 }
 
 /* Central picture */
@@ -352,9 +352,9 @@ body {
 	height: var(--center-icon-size);
 	width: var(--center-icon-size);
 
-	position: relative;
-	top: 50%;
-	left: 50%;
+	position: absolute;
+	top: calc(var(--out-width)/2 - var(--center-icon-size)/2);
+	left: calc(var(--out-width)/2 - var(--center-icon-size)/2 + 3px);
 }
 
 #windSVGimage {
@@ -362,7 +362,7 @@ body {
 
 	width: calc(var(--out-width)/2 - var(--pico-font-size));
 
-	position: relative;
+	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform-origin: top left;	/* regarding what to rotate */
