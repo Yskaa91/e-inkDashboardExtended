@@ -346,6 +346,18 @@ body {
 	left: calc(var(--out-width)/2 + 2px);
 }
 
+#max_upwind_angle_streak{
+	/*border: solid red;*/
+
+	height: var(--out-width);
+	width: var(--out-width);
+
+	position: absolute;
+	top: 2px;
+	left: calc(var(--out-width)/2 + 2px);
+	transform: rotate(90deg);
+}
+
 /* Central picture */
 #center_icon {
 	/*border: solid red;*/
