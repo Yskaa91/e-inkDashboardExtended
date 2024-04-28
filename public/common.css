@@ -236,6 +236,7 @@ body {
 	
 	/*border: solid red;*/
 	
+	position: relative;
 	container-type: inline-size;	/*  */
 	width: var(--out-width);
 	height: var(--out-width);
