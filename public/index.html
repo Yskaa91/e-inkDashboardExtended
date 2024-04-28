@@ -302,13 +302,21 @@
                   checksTPV
                 );
               }
+
               // Leading to normal dimensions
               if (prop.value !== null && displayData[tpvName].multiplicator)
-                tpv[tpvName].value =
+                tmp =
                   prop.value * displayData[tpvName].multiplicator;
-              else tpv[tpvName].value = prop.value;
-              tpv[tpvName].timestamp = Date.parse(props.timestamp);
-              changedTPV.push(tpvName);
+              else tmp = prop.value;
+
+              // Check if value changed by more than 3% to prevent refreshing too often
+              if (tmp > 0) {
+                if (Math.abs((tpv[tpvName].value-tmp)/tmp) > 0.03) {
+                  tpv[tpvName].timestamp = Date.parse(props.timestamp);
+                  changedTPV.push(tpvName);
+                }
+              }
+              
               //if(tpvName == 'pluginStatus') console.log('[websocketOnMessage] tpvName=',tpvName,'tpv[tpvName]:',tpv[tpvName]);
             }
           }
