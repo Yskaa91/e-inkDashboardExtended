@@ -224,7 +224,7 @@ body {
 
 /* Compass styles */
 #compass {
-	--center-icon-size: calc(var(--out-width)/4);
+	--center-icon-size: calc(var(--out-width)/10);
 	--collisionArrowWidthBig: var(--center-icon-size);
 	--collisionArrowLeftBig: calc(var(--out-width)/2 - var(--collisionArrowWidthBig)/2);
 	--collisionArrowWidthNormal: calc(var(--collisionArrowWidthBig)*0.75);
@@ -346,16 +346,28 @@ body {
 	left: calc(var(--out-width)/2 + 2px);
 }
 
-#max_upwind_angle_streak{
+#max_upwind_angle_streak_l{
 	/*border: solid red;*/
 
 	height: var(--out-width);
-	width: var(--out-width);
+	width: auto;
 
 	position: absolute;
 	top: 2px;
 	left: calc(var(--out-width)/2 + 2px);
-	transform: rotate(90deg);
+	transform: rotate(45deg);
+}
+
+#max_upwind_angle_streak_r{
+	/*border: solid red;*/
+
+	height: var(--out-width);
+	width: auto;
+
+	position: absolute;
+	top: 2px;
+	left: calc(var(--out-width)/2 + 2px);
+	transform: rotate(-45deg);
 }
 
 /* Central picture */
@@ -366,7 +378,7 @@ body {
 	width: var(--center-icon-size);
 
 	position: absolute;
-	top: calc(var(--out-width)/2 - var(--center-icon-size)/2);
+	top: calc(var(--out-width)/2 - var(--center-icon-size)/1.3);
 	left: calc(var(--out-width)/2 - var(--center-icon-size)/2 + 3px);
 }
 
