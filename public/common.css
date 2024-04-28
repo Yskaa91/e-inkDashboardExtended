@@ -1,5 +1,5 @@
 body {
-	--out-width: 75vmin; /* * 1% of the viewport's smaller dimension */
+	--out-width: 78vmin; /* * 1% of the viewport's smaller dimension */
 	--font-size: calc(var(--out-width)/7);	/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries */
 	--small-font-size: calc(var(--font-size)*0.7);	/* If you say EM, then the value will be the value, and not the value calculated at this moment.Therefore, it is calculated*/
 	--ltl-font-size: calc(var(--font-size)*0.4);
@@ -14,7 +14,7 @@ body {
 	In addition, 1FR works as written in the specification, only in Firefox, and in Chrome and Opera
 	The height of the line does not change.
 	*/
-	grid-template-rows: calc(100vh*0.045) 30% 30% 30% calc(100vh*0.045) calc(100vh*0.045);	
+	grid-template-rows: calc(100vh*0.055) 30% 30% 30% calc(100vh*0.055) calc(100vh*0.045);	
 	/*grid-template-rows: calc(100vh*0.045) 1fr 1fr 1fr calc(100vh*0.045);*/
 
 	/* And this is a percentage of compass calculated, although they should coincide with the height of the landscape screen. */
