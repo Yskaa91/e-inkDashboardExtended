@@ -81,27 +81,34 @@ function display(changedTPV) {
           tpv.track.value != null &&
           tpv.track.value != undefined
         ) {
+          center_icon.style.display = "";
           if (displayData.track.headingDirection) {
-            center_icon.style.transform = `rotate(0deg)`;
-          } else {
             if (
               tpv.heading &&
               tpv.heading.value != null &&
               tpv.heading.value != undefined
             ) {
-              center_icon.style.transform = `rotate(${
-                tpv.heading.value - tpv.track.value
+              center_marc.style.transform = `rotate(${
+                tpv.track.value - tpv.heading.value
               }deg)`;
             }
           }
-          bottomMessages.track = `${
+          compassCard.style.transform = `rotate(${360 - tpv.track.value}deg)`;
+          topMessage.innerHTML = `${
             displayData.track.label
           } ${tpv.track.value.toFixed(displayData.track.precision)}°`;
-          updBottomMessages(); // Shows the lower message
         } else {
-          center_icon.style.transform = `rotate(0deg)`;
-          delete bottomMessages.heading;
-          updBottomMessages(); // Shows the lower message
+          // You need to show the card, even if there is no direction, because the wind and mob can be shown on it
+          compassCard.style.transform = `rotate(0deg)`;
+          center_icon.style.display = "none";
+          compassMessage.innerHTML = `<span class="blink" style="font-size:3em;">?</span>`;
+          compassMessage.style.display = "";
+          topMessage.innerHTML = `${displayData.track.label} ?`;
+        }
+        if (mobPosition && tpv.position) {
+          const mobBearing = bearing(tpv.position.value, mobPosition);
+          mobMark.style.display = "";
+          mobMark.style.transform = `rotate(${mobBearing}deg)`;
         }
         break;
 
@@ -111,27 +118,27 @@ function display(changedTPV) {
           tpv.heading.value != null &&
           tpv.heading.value != undefined
         ) {
-          center_icon.style.display = "";
           if (displayData.heading.headingDirection) {
+            center_icon.style.transform = `rotate(0deg)`;
+          } else {
             if (
-              tpv.heading &&
-              tpv.heading.value != null &&
-              tpv.heading.value != undefined
+              tpv.track &&
+              tpv.track.value != null &&
+              tpv.track.value != undefined
             ) {
-              center_marc.style.transform = `rotate(${
+              center_icon.style.transform = `rotate(${
                 tpv.heading.value - tpv.track.value
               }deg)`;
             }
           }
-          compassCard.style.transform = `rotate(${360 - tpv.heading.value}deg)`;
-          topMessage.innerHTML = `${
+          bottomMessages.heading = `${
             displayData.heading.label
           } ${tpv.heading.value.toFixed(displayData.heading.precision)}°`;
-        }
-        if (mobPosition && tpv.position) {
-          const mobBearing = bearing(tpv.position.value, mobPosition);
-          mobMark.style.display = "";
-          mobMark.style.transform = `rotate(${mobBearing}deg)`;
+          updBottomMessages(); // Shows the lower message
+        } else {
+          center_icon.style.transform = `rotate(0deg)`;
+          delete bottomMessages.heading;
+          updBottomMessages(); // Shows the lower message
         }
         break;
 
