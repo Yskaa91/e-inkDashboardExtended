@@ -1,28 +1,28 @@
 body {
-	--out-width: 88vmin; /* * 1% of the viewport's smaller dimension */
+	--out-width: 66vmin; /* * 1% of the viewport's smaller dimension */
 	--font-size: calc(var(--out-width)/8);	/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries */
-	--small-font-size: calc(var(--font-size)*0.7);	/* если сказать em, то величиной будет em, а не вычисленное в этот момент значение. Поэтому -- вычисляется */
+	--small-font-size: calc(var(--font-size)*0.7);	/* If you say EM, then the value will be the value, and not the value calculated at this moment.Therefore, it is calculated*/
 	--ltl-font-size: calc(var(--font-size)*0.4);
 	--ltl1-font-size: calc(var(--font-size)*0.3);
 	--pico-font-size: calc(var(--font-size)*0.2);
 
 	display: grid;
-	grid-template-columns: 5% 30% 30% 30% 5%;	/* это проценты имеющейся ширины body */
+	grid-template-columns: 5% 30% 30% 30% 5%;	/* This is the percentage of the available Body width */
 
-	/* почему-то, если указать % в крайних строках, то пространство исчезает, 
-	если там нет объекта. А если указать число -- остаётся. 
-	Кроме того, 1fr работает, как написано в спецификации, только в Firefox, а в Chrome и Opera
-	высота строки не меняется.
+	/* For some reason, if you specify % in the extreme lines, then the space disappears,
+	If there is no object.And if you indicate the number, it remains.
+	In addition, 1FR works as written in the specification, only in Firefox, and in Chrome and Opera
+	The height of the line does not change.
 	*/
 	grid-template-rows: calc(100vh*0.045) 30% 30% 30% calc(100vh*0.045);	
 	/*grid-template-rows: calc(100vh*0.045) 1fr 1fr 1fr calc(100vh*0.045);*/
 
-	/* А это проценты от вычисленого размера compass, хотя они и должны совпадать с высотой ландшафтного экрана. */
+	/* And this is a percentage of compass calculated, although they should coincide with the height of the landscape screen. */
 	/*grid-template-rows: calc(var(--out-width)*0.05) calc(var(--out-width)*0.3) calc(var(--out-width)*0.3) calc(var(--out-width)*0.3) calc(var(--out-width)*0.05);*/
 
 	font-size: var(--font-size);
 }
-/* Стили блоков данных */
+/* Data blocks*/
 #topMessage {
 	grid-column-start: 2;
 	grid-column-end: 5;
@@ -65,7 +65,7 @@ body {
 	text-align: left;
 	line-height: 0.7;
 	height: fit-content;
-	/*align-self: start;	это умолчальное значение */
+	/*align-self: start;	This is a silent meaning */
 	margin-top: 0.1em;
 
 	/*border:solid green;*/
@@ -88,7 +88,7 @@ body {
 	text-align: right;
 	line-height: 0.7;
 	height: fit-content;
-	/*align-self: start;	это умолчальное значение */
+	/*align-self: start;	This is a silent meaning */
 	margin-top: 0.1em;
 
 	/*border:solid green;*/
@@ -169,19 +169,19 @@ body {
 	grid-row-start: 4;
 	grid-row-end: 6;
 	text-align: center;
-	display: flow; /* Вложенные объекты будут подчиняться обычным правилам размещения */
+	display: flow; /* Invested objects will obey the usual placement rules */
 
 	border: solid black;
 	border-radius: calc(var(--out-width)*0.02);
-	/* Поскольку высота ячейки grid меняется с изменением размера шрифта в угловых блоках (почему?)
-	то высота этого блока фиксирована и чуть меньше нормальной высоты ячейки, а сам блок
-	выровнен к концу ячейки, чтобы не менял положения с изменением высоты ячейки. Пурга какая-то...
+	/* Since the Grid cell height changes with a change in the font size in the corner blocks (why?)
+	then the height of this block is fixed and slightly less than the normal height of the cell, and the block itself
+	Leveled to the end of the cell so that he does not change the position with a change in the height of the cell.Some kind of snowstorm ...
 	*/
 	height: calc(var(--out-width)*0.3);
 	width: 100%;
 	align-self: end;
-	/* Непрозрачный фон и выше всего на 10. 
-	Тогда закрывает и компас, который всегда сверху, потому что крутится */
+	/* An opaque background and only 10.
+	Then closes the compass, which is always from above, because it spins */
 	background-color: white;
 	z-index: 10;
 	font-size: var(--ltl-font-size);
@@ -200,7 +200,7 @@ body {
 }
 
 
-/* Стили кнопок */
+/* Styles of the buttons*/
 #mobButton {
 	grid-column-start: 1;
 	grid-column-end: 3;
@@ -222,7 +222,7 @@ body {
 
 
 
-/* стили компаса */
+/* Compass styles */
 #compass {
 	--center-icon-size: calc(var(--out-width)/4);
 	--collisionArrowWidthBig: var(--center-icon-size);
@@ -246,7 +246,7 @@ body {
 	margin: auto;
 
 }
-/* стили картушки компаса */
+/* Styles of the compass cartoon */
 .compass-card {
 	border: solid black;
 	container-type: inline-size;
@@ -267,11 +267,11 @@ body {
 	position: absolute;
 
 	height: calc(var(--out-width)/2);
-	width: calc(var(--font-size)*2);	/* три ширины символа: (--font-size * 2 / 3) * 3 */
-	top: 0;	/*поскольку высота равна радиусу, низ "спицы" будет в центре окружности .compass*/
-	left: calc(var(--out-width)/2 - var(--font-size));	/*ширина - 1/2 ширины строки*/
+	width: calc(var(--font-size)*2);	/* Three symbol widths: (--font-size * 2 / 3) * 3 */
+	top: 0;	/*Since the height is equal to the radius, the bottom of the "knitting needle" will be in the center of the circle .compass*/
+	left: calc(var(--out-width)/2 - var(--font-size));	/*width - 1/2 width of the line*/
 	text-align: center;
-	transform-origin: bottom center;	/* относительно чего вращать */
+	transform-origin: bottom center;	/* regarding what to rotate */
 }
 
 .charN { 
@@ -333,37 +333,39 @@ body {
 	font-size: var(--ltl-font-size);
 	transform: rotate(337.5deg); 
 }
+
 #center_marc_streak{
 	/*border: solid red;*/
 
 	height: var(--out-width);
 	width: auto;
 
-	position: absolute;
+	position: relative;
 	top: 2px;
-	left: calc(var(--out-width)/2 + 2px);
+	left: 50%;
 }
 
-/* Центральная картинка */
+/* Central picture */
 #center_icon {
 	/*border: solid red;*/
 
 	height: var(--center-icon-size);
 	width: var(--center-icon-size);
 
-	position: absolute;
-	top: calc(var(--out-width)/2 - var(--center-icon-size)/2);
-	left: calc(var(--out-width)/2 - var(--center-icon-size)/2 + 3px);
+	position: relative;
+	top: 50%;
+	left: 50%;
 }
+
 #windSVGimage {
 	/*border: solid red;*/
 
 	width: calc(var(--out-width)/2 - var(--pico-font-size));
 
-	position: absolute;
+	position: relative;
 	top: 50%;
 	left: 50%;
-	transform-origin: top left;	/* относительно чего вращать */
+	transform-origin: top left;	/* regarding what to rotate */
 }
 
 #collisionArrows div {
@@ -375,7 +377,7 @@ body {
 	top: var(--ltl-font-size);
 	left: var(--collisionArrowLeftBig);
 	
-	transform-origin: bottom center;	/* относительно чего вращать */
+	transform-origin: bottom center;	/* regarding what to rotate */
 }
 .collisionArrowImg {
 	/*border: solid green;*/
@@ -392,7 +394,7 @@ body {
 	top: 0;
 	left: var(--collisionArrowLeftSmall);
 	
-	transform-origin: bottom center;	/* относительно чего вращать */
+	transform-origin: bottom center;	/* regarding what to rotate */
 }
 #mobMark img{
 	position: relative;
@@ -410,7 +412,7 @@ body {
 	top: 0;
 	left: calc(var(--collisionArrowLeftLitle)*1.02);
 	
-	transform-origin: bottom center;	/* относительно чего вращать */
+	transform-origin: bottom center;	/* regarding what to rotate */
 }
 #nextPointDirection svg {
 	/*border: solid green;*/

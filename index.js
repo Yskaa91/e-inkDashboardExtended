@@ -275,7 +275,7 @@ const displayData = {
         optionsjs += `
 	'track' : {	// course over ground
 		'signalkPath': 'navigation.courseOverGroundTrue',
-		'label': dashboardCourseTXT,	
+		'label': dashboardCourseTXT,
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
@@ -528,8 +528,7 @@ Addition to the coordinates of the target.
 		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
 	},
 `;
-      /*Prevention of clashes, requires collision-deetector */;
-      optionsjs += `
+      /*Prevention of clashes, requires collision-deetector */ optionsjs += `
 	'collisions' : {
 		'signalkPath': 'notifications.danger.collision',
 		'precision' : 0,
