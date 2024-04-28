@@ -344,7 +344,7 @@ body {
 
 	position: absolute;
 	top: 2px;
-	left: calc(var(--out-width)/2 + 2px);
+	left: 50%;
 }
 
 #max_upwind_angle_streak_l{
@@ -355,8 +355,8 @@ body {
 
 	position: absolute;
 	top: 2px;
-	left: calc(var(--out-width)/2 + 2px);
-	transform: rotate(45deg);
+	left: calc(var(--out-width)/2);
+	transform: translate(-25%, 0%) rotate(45deg);
 }
 
 #max_upwind_angle_streak_r{
@@ -367,8 +367,8 @@ body {
 
 	position: absolute;
 	top: 2px;
-	left: calc(var(--out-width)/2 + 2px);
-	transform: rotate(-45deg);
+	left: calc(var(--out-width)/2);
+	transform: translate(-25%, 0%) rotate(-45deg);
 }
 
 /* Central picture */
@@ -379,8 +379,8 @@ body {
 	width: var(--center-icon-size);
 
 	position: absolute;
-	top: calc(var(--out-width)/2 - var(--center-icon-size)/1.3);
-	left: calc(var(--out-width)/2 - var(--center-icon-size)/2 + 3px);
+	top: calc(var(--out-width)/2 - var(--center-icon-size)/2);
+	left: calc(var(--out-width)/2 - var(--center-icon-size)/2);
 }
 
 #windSVGimage {
@@ -389,10 +389,21 @@ body {
 	width: calc(var(--out-width)/2 - var(--pico-font-size));
 
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform-origin: top left;	/* regarding what to rotate */
+	top: calc(var(--center-icon-size)/2 - 8/466*(var(--out-width) / 2 - var(--pico-font-size)));
+	left: calc(var(--center-icon-size)/2);
+	transform-origin: 0 calc(8/ 466*(var(--out-width) / 2 - var(--pico-font-size)));	/* regarding what to rotate */
 }
+#windSVGimage2 {
+	/*border: solid red;*/
+
+	width: calc(var(--out-width)/2 - var(--pico-font-size));
+
+	position: absolute;
+	top: calc(var(--center-icon-size)/2 - 8/466*(var(--out-width) / 2 - var(--pico-font-size)));
+	left: calc(var(--center-icon-size)/2);
+	transform-origin: 0 calc(8/ 466*(var(--out-width) / 2 - var(--pico-font-size)));	/* regarding what to rotate */
+}
+
 
 #collisionArrows div {
 	/*border: solid red;*/
