@@ -348,6 +348,18 @@ body {
 	transform-origin: center;
 }
 
+#center_marc_static{
+	/*border: solid red;*/
+
+	height: var(--out-width);
+	width: auto;
+
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	transform-origin: center;
+}
+
 #max_upwind_angle_streak_l{
 	/*border: solid red;*/
 
@@ -385,16 +397,6 @@ body {
 }
 
 #windSVGimage {
-	/*border: solid red;*/
-
-	width: calc(var(--out-width)/2 - var(--pico-font-size));
-
-	position: absolute;
-	top: calc(var(--center-icon-size)/2 - 8/466*(var(--out-width) / 2 - var(--pico-font-size)));
-	left: calc(var(--center-icon-size)/2);
-	transform-origin: 0 calc(8/ 466*(var(--out-width) / 2 - var(--pico-font-size)));	/* regarding what to rotate */
-}
-#windSVGimage2 {
 	/*border: solid red;*/
 
 	width: calc(var(--out-width)/2 - var(--pico-font-size));
