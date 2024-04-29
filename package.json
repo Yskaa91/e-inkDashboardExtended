@@ -1,6 +1,6 @@
 {
   "name": "e-inkdashboardextended",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "E-InkDashboardExtended is a signalK dashboard aimed at devices with e-ink screen. This application is based on the work of Vladimir Kalachikhin.",
   "main": "index.js",
   "author": "Jasper Kouwenberg",
@@ -13,8 +13,7 @@
   ],
   "homepage": "https://github.com/Yskaa91/e-inkDashboardExtended#readme",
   "bugs": {
-    "url": "https://github.com/Yskaa91/e-inkDashboardExtended/issues",
-    "email": "galadrielmap@gmail.com"
+    "url": "https://github.com/Yskaa91/e-inkDashboardExtended/issues"
   },
   "repository": {
     "type": "git",
