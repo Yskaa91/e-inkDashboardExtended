@@ -208,7 +208,7 @@ body {
 	grid-row-start: 6;
 	grid-row-end: 7;
 	text-align: left;
-	display: inherit; 
+	display: none; 
 
 	border: solid black;
 	border-radius: calc(var(--out-width)*0.02);
