@@ -358,6 +358,7 @@ body {
 	top: 0px;
 	left: 50%;
 	transform-origin: center;
+	transform: translate(-25%, 0%);
 }
 
 #max_upwind_angle_streak_l{
