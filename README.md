@@ -6,13 +6,12 @@
 
 **WARNING! No information shown or not shown by this application may serve as a basis for an action or inaction of the shipmaster.**
 
-## v. 0.5.2
+## v. 0.5.3
 Contents:  
 - [Features](#features)
 - - [Direction](#direction)
 - - [Wind](#wind)
-- - [Navigation](#navigation)
-- - [Collision alarm](#collision-alarm)
+- - [Navigation](#navigation
 - - [In screen corners](#in-screen-corners)
 - - [Data actuality](#data-actuality)
 - [Requirements](#requirements)
@@ -53,7 +52,7 @@ One of the following values may be specified as the wind:
 * True wind through ground (GWA)
 * none
 
-The default value is the Apparent wind.
+The default value is the Apparent wind. Wind angle data is smoothed to avoid excessive jerking of the indicator on slow e-ink displays.
 
 ### Navigation
 If there is information about the next navigation point, a direction indicator to that point will be displayed. If specified in the application configuration - the distance to a point will be displayed in one corner of the screen.  

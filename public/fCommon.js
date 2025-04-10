@@ -10,8 +10,6 @@ chkTPV(tpvName)
 
 bigBlock(block,bigStyleName)
 
-closebottomOnButtonMessage()
-
 bearing(latlng1, latlng2)
 equirectangularDistance(from,to)
 

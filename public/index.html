@@ -236,6 +236,7 @@
 
       var tpv = {};
       var socket;
+      var wangle_smoothed = -1;
 
       // Variables with signature strings are defined in internationalisation.js
       // Variables - options are defined in options.js
@@ -346,6 +347,15 @@
                 }
               } else {
                 tpv[tpvName].value = tmp
+              }
+              
+              if (tpvName == "wangle") {
+                if (wangle_smoothed < 0) {
+                  wangle_smoothed = tpv[tpvName].value
+                } else {
+                  wangle_smoothed = 0.3*tpv[tpvName].value + 0.7*wangle_smoothed
+                  tpv[tpvName].value = wangle_smoothed
+                }
               }
 
               tpv[tpvName].timestamp = Date.parse(props.timestamp);

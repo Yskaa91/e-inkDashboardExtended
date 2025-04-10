@@ -24,38 +24,6 @@ body {
 	font-family: "Lucida Console";
 }
 /* Data blocks*/
-#topMessage {
-	grid-column-start: 2;
-	grid-column-end: 5;
-	grid-row-start: 1;
-	grid-row-end: 2;
-	font-size: calc(var(--pico-font-size)*1.4);
-	text-align: center;
-	
-	/*display:inherit; border:solid green;*/
-}
-#compassMessage {
-	grid-column-start: 3;
-	grid-column-end: 4;
-	grid-row-start: 3;
-	grid-row-end: 4;
-	margin: auto;
-	/*font-size: var(--small-font-size);*/
-	font-size: 0.5em;
-	text-align: center;
-	
-	/*display:inherit; border:solid green;*/
-}
-#bottomMessage {
-	grid-column-start: 2;
-	grid-column-end: 5;
-	grid-row-start: 5;
-	grid-row-end: 6;
-	font-size: var(--pico-font-size);
-	text-align: center;
-	align-self: end;
-	/*display:inherit; border:solid green;*/
-}
 
 #leftTopBlock {
 	grid-column-start: 1;
@@ -163,65 +131,6 @@ body {
 @keyframes frameblinker{
 	50% { border-color: white; }
 }
-
-#bottomOnButtonMessage {
-	grid-column-start: 1;
-	grid-column-end: 6;
-	grid-row-start: 4;
-	grid-row-end: 6;
-	text-align: center;
-	display: flow; /* Invested objects will obey the usual placement rules */
-
-	border: solid black;
-	border-radius: calc(var(--out-width)*0.02);
-	/* Since the Grid cell height changes with a change in the font size in the corner blocks (why?)
-	then the height of this block is fixed and slightly less than the normal height of the cell, and the block itself
-	Leveled to the end of the cell so that he does not change the position with a change in the height of the cell.Some kind of snowstorm ...
-	*/
-	height: calc(var(--out-width)*0.3);
-	width: 100%;
-	align-self: end;
-	/* An opaque background and only 10.
-	Then closes the compass, which is always from above, because it spins */
-	background-color: white;
-	z-index: 10;
-	font-size: var(--ltl-font-size);
-}
-.messageButton {
-	display: inline-block;
-	border: solid black;
-	border-radius: calc(var(--out-width)*0.02);
-	margin: calc(var(--ltl-font-size)*0.5) var(--ltl-font-size);
-	padding: 0 0.5em;
-	min-width: fit-content;
-}
-.messageButton img{
-	width: calc(var(--out-width)*0.05);
-	margin: auto calc(var(--out-width)*0.025);
-}
-
-
-/* Styles of the buttons*/
-#mobButton {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	grid-row-start: 6;
-	grid-row-end: 7;
-	text-align: left;
-	display: none; 
-
-	border: solid black;
-	border-radius: calc(var(--out-width)*0.02);
-	height: fit-content;
-	width: calc(var(--out-width)*0.5);
-}
-#mobButton img{
-	width: calc(var(--out-width)*0.05);
-	vertical-align: middle;
-	margin: 0 auto;
-}
-
-
 
 /* Compass styles */
 #compass {
@@ -408,41 +317,6 @@ body {
 	transform-origin: 0 calc(8/ 466*(var(--out-width) / 2 - var(--pico-font-size)));	/* regarding what to rotate */
 }
 
-
-#collisionArrows div {
-	/*border: solid red;*/
-	
-	position: absolute;
-	height: calc(var(--out-width)/2 - var(--ltl-font-size));
-	width: var(--collisionArrowWidthBig);
-	top: var(--ltl-font-size);
-	left: var(--collisionArrowLeftBig);
-	
-	transform-origin: bottom center;	/* regarding what to rotate */
-}
-.collisionArrowImg {
-	/*border: solid green;*/
-	width: 100%;
-	vertical-align: top;
-}
-
-#mobMark {
-	/*border: solid red;*/
-	
-	position: absolute;
-	height: calc(var(--out-width)/2);
-	width: var(--collisionArrowWidthSmall);
-	top: 0;
-	left: var(--collisionArrowLeftSmall);
-	
-	transform-origin: bottom center;	/* regarding what to rotate */
-}
-#mobMark img{
-	position: relative;
-	top: calc(0px - var(--collisionArrowWidthSmall)*0.5);
-	width: 100%;
-	vertical-align: top;
-}
 
 #nextPointDirection {
 	/*border: solid red;*/
