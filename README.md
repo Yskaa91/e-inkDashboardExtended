@@ -6,7 +6,7 @@
 
 **WARNING! No information shown or not shown by this application may serve as a basis for an action or inaction of the shipmaster.**
 
-## v. 0.5.1
+## v. 0.5.2
 Contents:  
 - [Features](#features)
 - - [Direction](#direction)
@@ -59,12 +59,6 @@ The default value is the Apparent wind.
 If there is information about the next navigation point, a direction indicator to that point will be displayed. If specified in the application configuration - the distance to a point will be displayed in one corner of the screen.  
 The next navigation point will be displayed in any route mode, both when following the specified point and when following the route.
 
-### Collision alarm
-Using this feature requires installation of the SignalK [collision-detector](https://www.npmjs.com/package/collision-detector) extension. The extension is installed in the usual way from the Appstore in the SignalK Administrative Interface.
-
-Pointers in the form of contour arrows indicate directions to hazards issued by the collision-detector extension. The largest arrow shows the direction of the nearest hazard, with the distance to the hazard displayed in the lower right corner of the screen (regardless of what was previously shown there). This value is framed by a flashing corner frame to attract attention.  
-Once the hazard is gone, the information in the lower right corner is restored.
-
 ### In screen corners
 One of the following values may be displayed in each of the four corners of the screen, if the SignalK server has the information:
 
@@ -99,15 +93,11 @@ The application keeps track of the actuality of the incoming data. If the incomi
 ## Requirements
 The web application requires a more or less modern browser (version not older than 5 years), and will not work in Internet Explorer browser. Some device performance and sufficient e-ink screen refresh rate are also required. However, all modern e-book type devices have the required features.
 
-## Dependencies
-Collision alerting requires the [collision-detector](https://www.npmjs.com/package/collision-detector) extension to be installed in SignalK.  
-The use of a [GaladrielMap](https://www.npmjs.com/package/galadrielmap_sk) chartplotter is highly recommended for Man Overboard notification.
-
 ## Installation
-e-inkdashboardmodern is a SignalK web application (Webapps), and can be installed in the SignalK environment in the usual way from the Appstore in the SignalK Administrative Interface.
+e-inkdashboardextended is a SignalK web application (Webapps), and can be installed in the SignalK environment in the usual way from the Appstore in the SignalK Administrative Interface.
 
 ## Launch
-In the SignalK Administration Interface, select Webapps -> E-InkDashboardModern SignalK Edition  
+In the SignalK Administration Interface, select Webapps -> E-InkDashboardExtended SignalK Edition  
 
 ## Support
 Please submit bugs and feature requests to [Github](https://github.com/Yskaa91/e-inkDashboardExtended/issues)
