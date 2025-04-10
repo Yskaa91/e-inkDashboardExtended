@@ -9,11 +9,8 @@ isValueNull(valueName,value)
 chkTPV(tpvName)
 
 bigBlock(block,bigStyleName)
-updBottomMessages()
 
-MOBalarm()
 closebottomOnButtonMessage()
-sendMOBtoServer(status=true)
 
 bearing(latlng1, latlng2)
 equirectangularDistance(from,to)
@@ -21,7 +18,6 @@ equirectangularDistance(from,to)
 generateUUID()
 getCookie(name)
 */
-var bottomMessages = {};
 
 function display(changedTPV) {
   if (!changedTPV) changedTPV = Object.keys(displayData);
@@ -49,19 +45,6 @@ function display(changedTPV) {
         break;
 
       case "position":
-        if (mobPosition && tpv.position) {
-          // Update the distance to mob
-          const mobDist = equirectangularDistance(
-            tpv.position.value,
-            mobPosition
-          );
-          // Distance to MOB in the lower left corner
-          leftBottomBlock.style.display = "inherit";
-          leftBottomBlock.innerHTML = `${mobDist.toFixed(
-            displayData.mob.precision
-          )}<span style="font-size:var(--ltl1-font-size);"><br>${dashboardMOBalarmTXT}, ${dashboardAlarmDistanceMesTXT}</span>`;
-          leftBottomBlock.classList.add("leftBottomFrameBlinker");
-        }
         if (
           tpv.nextPoint &&
           tpv.nextPoint.value &&
@@ -75,7 +58,6 @@ function display(changedTPV) {
 
       /* Circle drawing */
       case "heading":
-        compassMessage.style.display = "none";
         if (
           tpv.heading &&
           tpv.heading.value != null &&
@@ -84,21 +66,10 @@ function display(changedTPV) {
           center_icon.style.display = "";
 
           compassCard.style.transform = `rotate(${360 - tpv.heading.value}deg)`;
-          topMessage.innerHTML = `${
-            displayData.heading.label
-          } ${tpv.heading.value.toFixed(displayData.heading.precision)}°`;
         } else {
-          // You need to show the card, even if there is no direction, because the wind and mob can be shown on it
+          // You need to show the card, even if there is no direction, because the wind can be shown on it
           compassCard.style.transform = `rotate(0deg)`;
           center_icon.style.display = "none";
-          compassMessage.innerHTML = `<span class="blink" style="font-size:3em;">?</span>`;
-          compassMessage.style.display = "";
-          topMessage.innerHTML = `${displayData.heading.label} ?`;
-        }
-        if (mobPosition && tpv.position) {
-          const mobBearing = bearing(tpv.position.value, mobPosition);
-          mobMark.style.display = "";
-          mobMark.style.transform = `rotate(${mobBearing}deg)`;
         }
         break;
 
@@ -121,14 +92,8 @@ function display(changedTPV) {
               }deg)`;
             }
           }
-          bottomMessages.track = `${
-            displayData.track.label
-          } ${tpv.track.value.toFixed(displayData.track.precision)}°`;
-          updBottomMessages(); // Shows the lower message
         } else {
           center_icon.style.transform = `rotate(0deg)`;
-          delete bottomMessages.track;
-          updBottomMessages(); // Shows the lower message
         }
         break;
 
@@ -150,7 +115,6 @@ function display(changedTPV) {
             );
           } else {
             realWindSymbolViewUpdate(0.1);
-            updBottomMessages(); // Shows the lower message
           }
         }
         break;
@@ -167,125 +131,9 @@ function display(changedTPV) {
             tpv.wspeed.value != undefined
           ) {
             realWindSymbolViewUpdate(tpv.wspeed.value);
-            bottomMessages.wspeed = `${
-              displayData.wspeed.label
-            } ${tpv.wspeed.value.toFixed(displayData.wspeed.precision)}`;
-            updBottomMessages(); // Shows the lower message
           } else {
             realWindSymbolViewUpdate(0.1);
-            updBottomMessages(); // Shows the lower message
           }
-        }
-        break;
-
-      case "collisions":
-        collisionArrows.innerHTML = "";
-        rightBottomBlock.innerHTML = "";
-        if (tpv.collisions && tpv.collisions.value) {
-          let collisions = Object.entries(tpv.collisions.value.vessels).sort(
-            function (a, b) {
-              return a[1].dist - b[1].dist;
-            }
-          ); // Ride sorting, collisions - an array of arrays of two elements, the first is the former key, the second is the former value
-          let minDist = Math.floor(collisions[0][1].dist + 1),
-            maxDist,
-            step;
-          if (collisions.length > 1) {
-            minDist = Math.floor(collisions[1][1].dist);
-            maxDist = Math.floor(collisions[collisions.length - 1][1].dist) + 1;
-            step = (maxDist - minDist) / 4;
-          }
-          let nearestDist = "";
-          for (let collision of collisions) {
-            const arrow = collisionArrow.cloneNode(true);
-            arrow.id = collision[0];
-            collisionArrows.appendChild(arrow);
-            arrow.style.display = null;
-            arrow.style.transform = `rotate(${collision[1].bearing}deg)`;
-
-            if (collision[1].dist < minDist) {
-              nearestDist = collision[1].dist;
-            } else if (
-              collision[1].dist > minDist &&
-              collision[1].dist < minDist + step
-            ) {
-              arrow.style.width = "var(--collisionArrowWidthNormal)";
-              arrow.style.left = "var(--collisionArrowLeftNormal)";
-            } else if (
-              collision[1].dist > minDist + step &&
-              collision[1].dist < minDist + 2 * step
-            ) {
-              arrow.style.width = "var(--collisionArrowWidthSmall)";
-              arrow.style.left = "var(--collisionArrowLeftSmall)";
-            } else {
-              arrow.style.width = "var(--collisionArrowWidthLitle)";
-              arrow.style.left = "var(--collisionArrowLeftLitle)";
-            }
-          }
-
-          // Distance to the immediate danger in the lower right corner
-          rightBottomBlock.style.display = "inherit";
-          rightBottomBlock.innerHTML = `${nearestDist.toFixed(
-            displayData.collisions.precision
-          )}<span style="font-size:var(--ltl1-font-size);"><br>${dashboardCollisionAlarmTXT}, ${dashboardAlarmDistanceMesTXT}</span>`;
-          rightBottomBlock.classList.add("rightBottomFrameBlinker");
-        } else {
-          rightBottomBlock.classList.remove("rightBottomFrameBlinker");
-        }
-        break;
-
-      case "mob":
-        if (tpv.mob && tpv.mob.value) {
-          // MOB mode is
-          if (tpv.mob.value.position) {
-            // This is Geojson, probably from Galadrielmap
-            // look for a point indicated as current
-            let point;
-            for (point of tpv.mob.value.position.features) {
-              // there are not only points, but also linestring
-              if (
-                point.geometry.type == "Point" &&
-                point.properties &&
-                point.properties.current
-              ) {
-                mobPosition = {
-                  longitude: point.geometry.coordinates[0],
-                  latitude: point.geometry.coordinates[1],
-                };
-                break;
-              }
-            }
-            // But someone left can send Geojson without specifying the current point.Then the last will be the current one.
-            if (!mobPosition)
-              mobPosition = {
-                longitude: point.geometry.coordinates[0],
-                latitude: point.geometry.coordinates[1],
-              };
-          } else {
-            const s = JSON.stringify(tpv.mob.value);
-            if (s.includes("longitude") && s.includes("latitude")) {
-              mobPosition = {
-                longitude: tpv.mob.value.longitude,
-                latitude: tpv.mob.value.latitude,
-              };
-            } else if (s.includes("lng") && s.includes("lat")) {
-              mobPosition = {
-                longitude: tpv.mob.value.lng,
-                latitude: tpv.mob.value.lat,
-              };
-            } else if (s.includes("lon") && s.includes("lat")) {
-              mobPosition = {
-                longitude: tpv.mob.value.lon,
-                latitude: tpv.mob.value.lat,
-              };
-            }
-          }
-        } else {
-          // There is no MOB mode
-          mobPosition = null;
-          leftBottomBlock.innerHTML = "";
-          leftBottomBlock.classList.remove("leftBottomFrameBlinker");
-          mobMark.style.display = "none";
         }
         break;
 
@@ -293,14 +141,6 @@ function display(changedTPV) {
       case "propRevolutions0":
       case "propRevolutions1":
         if (!displayData[tpvName].DOMid) break; // This parameter is requested, but should not be shown
-        if (displayData[tpvName].DOMid == "leftBottomBlock" && mobPosition)
-          break; // We will not draw in the lower left corner if the mode is mob
-        if (
-          displayData[tpvName].DOMid == "rightBottomBlock" &&
-          tpv.collisions &&
-          tpv.collisions.value
-        )
-          break; // We will not draw in the lower right corner if the danger of a collision
 
         htmlBLock = document.getElementById(displayData[tpvName].DOMid);
         if (!tpv[tpvName] || tpv[tpvName].value === undefined) {
@@ -357,14 +197,6 @@ function display(changedTPV) {
 
       case "propTemperature1":
         if (!displayData[tpvName].DOMid) break; // This parameter is requested, but should not be shown
-        if (displayData[tpvName].DOMid == "leftBottomBlock" && mobPosition)
-          break; // We will not draw in the lower left corner if the mode is mob
-        if (
-          displayData[tpvName].DOMid == "rightBottomBlock" &&
-          tpv.collisions &&
-          tpv.collisions.value
-        )
-          break; // We will not draw in the lower right corner if the danger of a collision
 
         htmlBLock = document.getElementById(displayData[tpvName].DOMid);
         if (!tpv[tpvName] || tpv[tpvName].value === undefined) {
@@ -438,14 +270,6 @@ function display(changedTPV) {
 
       default:
         if (!displayData[tpvName].DOMid) break; // This parameter is requested, but should not be shown
-        if (displayData[tpvName].DOMid == "leftBottomBlock" && mobPosition)
-          break; // We will not draw in the lower left corner if the mode is mob
-        if (
-          displayData[tpvName].DOMid == "rightBottomBlock" &&
-          tpv.collisions &&
-          tpv.collisions.value
-        )
-          break; // We will not draw in the lower right corner if the danger of a collision
 
         htmlBLock = document.getElementById(displayData[tpvName].DOMid);
         if (
@@ -480,13 +304,6 @@ function display(changedTPV) {
     nextPointDirection.style.display = "inherit";
 
     if (!displayData.nextPoint.DOMid) return; //This parameter is requested, but should not be shown
-    if (displayData.nextPoint.DOMid == "leftBottomBlock" && mobPosition) return; // We will not draw in the lower left corner if the mode is mob
-    if (
-      displayData.nextPoint.DOMid == "rightBottomBlock" &&
-      tpv.collisions &&
-      tpv.collisions.value
-    )
-      return; // We will not draw in the lower right corner if the danger of a clashя
 
     let dist = equirectangularDistance(
       tpv.position.value,
@@ -524,11 +341,7 @@ function displayON() {
 
   center_marc.style.display = "";
   max_upwind_angle.style.display = "";
-  topMessage.style.display = "";
-  bottomMessage.style.display = "";
   center_icon.style.display = "";
-
-  compassMessage.style.display = "none";
 } // end function displayON
 
 function displayOFF() {
@@ -537,16 +350,11 @@ function displayOFF() {
 
   center_marc.style.display = "none";
   max_upwind_angle.style.display = "none";
-  topMessage.style.display = "none";
-  bottomMessage.style.display = "none";
   center_icon.style.display = "none";
   leftTopBlock.style.display = "none"; //To turn off events
   rightTopBlock.style.display = "none";
   rightBottomBlock.style.display = "none";
   leftBottomBlock.style.display = "none";
-
-  compassMessage.innerHTML = `<span>${dashboardGNSSoldTXT}</span>`;
-  compassMessage.style.display = "";
 } // end function displayOFF
 
 var oldWind = { w25cnt: null, w5cnt: null, w2dt5cnt: null, direction: null };
@@ -746,131 +554,9 @@ But it does not turn.
   } //end function downHline
 } // end function realWindSymbolUpdate
 
-function MOBalarm() {
-  if (tpv.mob && tpv.mob.value) {
-    // MOB mode is
-    bottomOnButtonMessage.innerHTML = `
-	<br>
-	<div class="messageButton" style="width: 60%;margin:1em 0;" onclick="sendMOBtoServer(true,tpv.mob.value.position);"><img src="img/mob.svg"> ${dashboardMOBbuttonAddTXT}</div>
-	<div class="messageButton" style="width: 20%;" onclick="sendMOBtoServer(false);"> ✘ ${dashboardMOBbuttonCancelTXT}</div>
-	`;
-    bottomOnButtonMessage.style.display = "";
-    document.body.addEventListener(
-      "click",
-      (event) => {
-        closebottomOnButtonMessage();
-      },
-      { once: true }
-    );
-  } else {
-    bottomOnButtonMessage.style.display = "none";
-    sendMOBtoServer(true);
-  }
-} // end function MOBalarm
-
 function closebottomOnButtonMessage() {
   bottomOnButtonMessage.style.display = "none";
 } // end function closebottomOnButtonMessage
-
-function sendMOBtoServer(status = true, mobMarkerJSON = null) {
-  /* */
-  if (typeof mobMarkerJSON == "string") {
-    try {
-      mobMarkerJSON = JSON.parse(mobMarkerJSON);
-    } catch (error) {
-      mobMarkerJSON = null;
-    }
-  }
-
-  let delta;
-  if (status) {
-    // You need to open the "person overboard" mode
-    // There are coordinates
-    if (
-      tpv.position &&
-      tpv.position.value &&
-      tpv.position.value.latitude &&
-      tpv.position.value.longitude
-    ) {
-      if (mobMarkerJSON) {
-        // Points, we must add
-        // This is geojson, we believe that galadrielmap
-        // For other options, forget the absence.Maybe one day....
-        if (mobMarkerJSON.type == "FeatureCollection") {
-          mobMarkerJSON.features.push({
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [
-                tpv.position.value.longitude,
-                tpv.position.value.latitude,
-              ],
-            },
-          });
-        }
-      } else {
-        // The new single point
-        mobMarkerJSON = {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              geometry: {
-                type: "Point",
-                coordinates: [
-                  tpv.position.value.longitude,
-                  tpv.position.value.latitude,
-                ],
-              },
-              properties: {
-                current: true,
-              },
-            },
-          ],
-        };
-      }
-    }
-    delta = {
-      context: "vessels.self",
-      updates: [
-        {
-          values: [
-            {
-              path: "notifications.mob",
-              value: {
-                method: ["visual", "sound"],
-                state: "emergency",
-                message: "A man overboard!",
-                source: instanceSelf,
-                position: mobMarkerJSON,
-              },
-            },
-          ],
-          timestamp: new Date().toISOString(),
-        },
-      ],
-    };
-  } else {
-    delta = {
-      context: "vessels.self",
-      updates: [
-        {
-          values: [
-            {
-              path: "notifications.mob",
-              value: null,
-            },
-          ],
-          timestamp: new Date().toISOString(),
-        },
-      ],
-    };
-  }
-
-  if (socket.readyState == 1) {
-    socket.send(JSON.stringify(delta));
-  }
-} // end function sendMOBtoServer
 
 var zerotonull = {};
 function isValueNull(valueName, value) {
@@ -935,19 +621,6 @@ function bigBlock(block, bigStyleName) {
   else compass.classList.remove("opa");
 } // end function bigBlock
 
-function updBottomMessages() {
-  // In this cretinsky language, the empty object does not have a .keys () function, and if the Bottommessages is empty,
-  // Bottommessages.keys () breaks off with Uncauret Typeerror: BottomMessages.keys Is Not a Function
-  if (!Object.keys(bottomMessages).length) {
-    bottomMessage.style.display = "none";
-    return;
-  }
-  bottomMessage.innerHTML = "";
-  for (let key in bottomMessages) {
-    bottomMessage.innerHTML += " " + bottomMessages[key];
-  }
-  bottomMessage.style.display = "inherit";
-} // end function updBottomMessages
 
 function bearing(latlng1, latlng2) {
   /* Returns azimuth from point 1 to point 2 */

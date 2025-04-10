@@ -12,9 +12,6 @@
     <title>e-inkDashboardExtended</title>
   </head>
   <body>
-    <div id="topMessage"></div>
-    <div id="compassMessage"></div>
-    <div id="bottomMessage"></div>
     <div
       id="leftTopBlock"
       onclick="bigBlock(this,'leftTopBlockBig');"
@@ -35,10 +32,6 @@
       onclick="bigBlock(this,'rightBottomBlockBig');"
       style="display: none"
     ></div>
-    <div id="bottomOnButtonMessage"><!-- There are four lines --></div>
-    <div id="mobButton">
-      <img src="img/mob.svg" />
-    </div>
     <div id="compass">
       <div id="center_icon">
         <svg
@@ -226,13 +219,6 @@
               NNW<br />|
             </div>
           </div>
-          <div id="collisionArrows"></div>
-          <div id="collisionArrow" style="display: none">
-            <img class="collisionArrowImg" src="img/arrow.svg" />
-          </div>
-          <div id="mobMark" style="display: none">
-            <img class="blink" src="img/mob.svg" />
-          </div>
           <div id="nextPointDirection" style="display: none">
             <svg
               version="1.1"
@@ -248,9 +234,7 @@
     <script>
       //compassCard.style.transform = 'rotate(30deg)';
 
-      var mobPosition = null; // MOB mode information: marker from GaladrilMap or something else
       var tpv = {};
-      var mobPosition = {};
       var socket;
 
       // Variables with signature strings are defined in internationalisation.js
@@ -268,12 +252,6 @@
           expires +
           "; path=/; SameSite=Lax;";
       }
-
-      bottomOnButtonMessage.style.display = "none";
-      mobButton.addEventListener("click", function (event) {
-        event.stopPropagation(); // So that it does not reach Body, which ClosebottomonbuttonMessage had time to hang out before.What is strange ...
-        MOBalarm();
-      });
 
       if (displayData.wangle && displayData.wangle.trueWind) {
         // If the wind is true
@@ -327,7 +305,6 @@
         } catch (error) {
           console.log("Parsing inbound data error: ", error.message);
           tpv = {};
-          mobPosition = {};
           display();
           return;
         }
@@ -377,7 +354,7 @@
           }
         }
 
-        changedTPV = Array.from(new Set(changedTPV)); // unicue array
+        changedTPV = Array.from(new Set(changedTPV)); // unique array
         display(changedTPV); // Actually drawing data
       } // end function websocketOnMessage
 

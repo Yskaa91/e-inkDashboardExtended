@@ -287,7 +287,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 	'heading' : {	// heading
@@ -296,7 +296,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -308,7 +308,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 	'heading' : {	// heading
@@ -317,7 +317,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -330,7 +330,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 	'heading' : {	// heading, курс
@@ -339,7 +339,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -352,7 +352,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 	'heading' : {	// heading
@@ -361,7 +361,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -374,7 +374,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 	'heading' : {	// heading
@@ -383,7 +383,7 @@ const displayData = {
 		'precision': 0,	
 		'multiplicator': ${180 / Math.PI}, 	
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 		'headingDirection': ${headingDirection}
 	},
 `;
@@ -401,7 +401,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 		'trueWind': ${trueWind}
 	},
 `;
@@ -412,7 +412,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
 `;
       } else if (options.wind.direction.feature.includes("(TW)")) {
@@ -424,7 +424,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 		'trueWind': ${trueWind}
 	},
 `;
@@ -435,7 +435,7 @@ const displayData = {
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
 `;
       } else if (options.wind.direction.feature.includes("TWM")) {
@@ -454,7 +454,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 		'trueWind': ${trueWind}
 	},
 `;
@@ -465,7 +465,7 @@ const displayData = {
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
 `;
         }
@@ -479,7 +479,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 		'trueWind': ${trueWind}
 	},
 `;
@@ -490,7 +490,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
 `;
       } else if (options.wind.direction.feature.includes("TWA")) {
@@ -503,7 +503,7 @@ const displayData = {
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 		'trueWind': ${trueWind}
 	},
 `;
@@ -514,7 +514,7 @@ const displayData = {
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${options.wind.direction.maxRefreshInterval * 1000},
-		'fresh': ${(2 + options.wind.direction.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + options.wind.direction.maxRefreshInterval) * 1000},
 	},
 `;
       }
@@ -533,23 +533,7 @@ Addition to the coordinates of the target.
 		'signalkPath': 'navigation.position',
 		'dataPaths': ['longitude','latitude'],	// If .value in Delta is not atomic value - the path from Value to atomic values.For verification on NULL.
 		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
-	},
-`;
-      /*Prevention of clashes, requires collision-deetector */ optionsjs += `
-	'collisions' : {
-		'signalkPath': 'notifications.danger.collision',
-		'precision' : 0,
-		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
-		'fresh': ${(5 + options.trackProp.maxRefreshInterval) * 1000},		
-	},
-`;
-      /* Man overboard, requires Galadrielmap*/
-      optionsjs += `
-	'mob' : {
-		'signalkPath': 'notifications.mob',
-		'precision' : 0,
-		'maxRefreshInterval': ${options.trackProp.maxRefreshInterval * 1000},
+		'fresh': ${(10 + options.trackProp.maxRefreshInterval) * 1000},		
 	},
 `;
       /* The next traveling point on the circle */
@@ -649,7 +633,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -661,7 +645,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -674,7 +658,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(2 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -686,7 +670,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(2 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -698,7 +682,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(2 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -714,7 +698,7 @@ Addition to the coordinates of the target.
 		'precision' : 0,
 		'multiplicator' : 60,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(2 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -743,7 +727,7 @@ Addition to the coordinates of the target.
 		'precision' : 0,
 		'multiplicator' : 60,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(2 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -833,7 +817,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -846,7 +830,7 @@ Addition to the coordinates of the target.
 		'precision' : 1,
 		'multiplicator' : 1.94384,
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -859,7 +843,7 @@ Addition to the coordinates of the target.
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
@@ -872,7 +856,7 @@ Addition to the coordinates of the target.
 		'precision' : 0,
 		'multiplicator' : ${180 / Math.PI},
 		'maxRefreshInterval': ${option.maxRefreshInterval * 1000},
-		'fresh': ${(3 + option.maxRefreshInterval) * 1000},
+		'fresh': ${(10 + option.maxRefreshInterval) * 1000},
 		"DOMid": "${DOMid}"
 	},
 `;
