@@ -1,6 +1,6 @@
 {
   "name": "e-inkdashboardextended",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "E-InkDashboardExtended is a signalK dashboard aimed at devices with e-ink screen. This application is based on the work of Vladimir Kalachikhin.",
   "main": "index.js",
   "author": "Jasper Kouwenberg",
