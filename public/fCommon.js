@@ -142,8 +142,8 @@ function display(changedTPV) {
 
         htmlBLock = document.getElementById(displayData[tpvName].DOMid);
         if (!tpv[tpvName] || tpv[tpvName].value === undefined) {
-          // Null - this engine is stopped.There could be a Display call for all values - for updating the screen
-          htmlBLock.style.display = "none"; // To turn off events
+          // Disabling the block is too stringent for some viewers
+          // htmlBLock.style.display = "none"; 
           break;
         }
 
@@ -198,8 +198,8 @@ function display(changedTPV) {
 
         htmlBLock = document.getElementById(displayData[tpvName].DOMid);
         if (!tpv[tpvName] || tpv[tpvName].value === undefined) {
-          // There could be a Display call for all values - for updating the screen
-          htmlBLock.style.display = "none"; // To turn off events
+          // Disabling the block is too stringent for some viewers
+          // htmlBLock.style.display = "none";
           break;
         }
         if (tpvName[tpvName.length - 1] == "0") {
@@ -275,8 +275,8 @@ function display(changedTPV) {
           tpv[tpvName].value === null ||
           tpv[tpvName].value === undefined
         ) {
-          // There could be a Display call for all values - for updating the screen
-          htmlBLock.style.display = "none"; // To turn off events
+          // Disabling the block is too stringent for some viewers
+          // htmlBLock.style.display = "none";
           break;
         }
         if (tpvName.includes("emperature")) tpv[tpvName].value -= 273.15; // To Temperates in Celsius
