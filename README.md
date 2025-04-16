@@ -6,12 +6,12 @@
 
 **WARNING! No information shown or not shown by this application may serve as a basis for an action or inaction of the shipmaster.**
 
-## v. 0.5.3
+## v. 0.5.4
 Contents:  
 - [Features](#features)
 - - [Direction](#direction)
 - - [Wind](#wind)
-- - [Navigation](#navigation
+- - [Navigation](#navigation)
 - - [In screen corners](#in-screen-corners)
 - - [Data actuality](#data-actuality)
 - [Requirements](#requirements)
