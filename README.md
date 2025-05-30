@@ -11,7 +11,6 @@ Contents:
 - [Features](#features)
 - - [Direction](#direction)
 - - [Wind](#wind)
-- - [Navigation](#navigation)
 - - [In screen corners](#in-screen-corners)
 - - [Data actuality](#data-actuality)
 - [Requirements](#requirements)
@@ -40,10 +39,7 @@ The vertical line indicates the course. The compass represent the heading. In ca
 The two 45 deg lines represent the tightest close haul angle.
 
 ### Wind
-If wind speed and wind direction information is available, a wind indicator will be displayed. The symbols of the pointer corresponds to that used in meteorology: a short stroke means a wind speed of 2.5 m/sec, a long stroke means 5 m/sec, and a triangle means 25 m/sec. Thus, the illustration shows wind speeds greater than or equal to 7.5 but less than 10 m/sec.  
-For your reference, the exact wind speed is indicated above the bottom edge of the screen.
-
-One of the following values may be specified as the wind:
+If wind speed and wind direction information is available, a wind indicator will be displayed. One of the following values may be specified as the wind:
 
 * Apparent wind (AW)
 * True wind through water (TWA)
@@ -53,10 +49,6 @@ One of the following values may be specified as the wind:
 * none
 
 The default value is the Apparent wind. Wind angle data is smoothed to avoid excessive jerking of the indicator on slow e-ink displays.
-
-### Navigation
-If there is information about the next navigation point, a direction indicator to that point will be displayed. If specified in the application configuration - the distance to a point will be displayed in one corner of the screen.  
-The next navigation point will be displayed in any route mode, both when following the specified point and when following the route.
 
 ### In screen corners
 One of the following values may be displayed in each of the four corners of the screen, if the SignalK server has the information:
