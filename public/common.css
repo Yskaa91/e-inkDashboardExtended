@@ -165,8 +165,6 @@ body {
 	font-size: var(--pico-font-size);
 }
 .compass-face div {
-	/*border: solid red;*/
-
 	position: absolute;
 
 	height: calc(var(--out-width)/2);
@@ -238,8 +236,6 @@ body {
 }
 
 #center_marc_streak{
-	/*border: solid red;*/
-
 	height: var(--out-width);
 	width: auto;
 
@@ -250,8 +246,6 @@ body {
 }
 
 #center_marc_static{
-	/*border: solid red;*/
-
 	height: var(--out-width);
 	width: auto;
 
@@ -263,8 +257,6 @@ body {
 }
 
 #max_upwind_angle_streak_l{
-	/*border: solid red;*/
-
 	height: var(--out-width);
 	width: auto;
 
@@ -275,8 +267,6 @@ body {
 }
 
 #max_upwind_angle_streak_r{
-	/*border: solid red;*/
-
 	height: var(--out-width);
 	width: auto;
 
@@ -287,8 +277,6 @@ body {
 }
 
 #max_downwind_angle_streak_l{
-	/*border: solid red;*/
-
 	height: var(--out-width);
 	width: auto;
 
@@ -299,8 +287,6 @@ body {
 }
 
 #max_downwind_angle_streak_r{
-	/*border: solid red;*/
-
 	height: var(--out-width);
 	width: auto;
 
@@ -312,8 +298,6 @@ body {
 
 /* Central picture */
 #center_icon {
-	/*border: solid red;*/
-
 	height: var(--center-icon-size);
 	width: var(--center-icon-size);
 
@@ -322,15 +306,16 @@ body {
 	left: calc(var(--out-width)/2 - var(--center-icon-size)/2);
 }
 
-#windSVGimage {
-	/*border: solid red;*/
-
-	width: calc(var(--out-width)/2 - var(--pico-font-size));
-
+#windSVGimage_container {
 	position: absolute;
-	top: calc(var(--center-icon-size)/2 - 8/466*(var(--out-width) / 2 - var(--pico-font-size)));
-	left: calc(var(--center-icon-size)/2);
-	transform-origin: 0 calc(8/ 466*(var(--out-width) / 2 - var(--pico-font-size)));	/* regarding what to rotate */
+	top: 2px;
+	left: calc(var(--out-width)/2);
+	transform: translate(-50%);
+}
+
+#windSVGimage {
+	height: var(--out-width);
+	width: auto;
 }
 
 .blink{	

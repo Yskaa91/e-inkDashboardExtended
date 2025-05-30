@@ -225,18 +225,6 @@ function display(changedTPV) {
         htmlBLock.innerHTML = str;
         break;
 
-      case "nextPoint": // Here it is possible to draw corners, but the label on the circle is also drawn
-        if (!tpv[tpvName] || !tpv[tpvName].value) {
-          nextPointDirection.style.display = "none";
-          if (displayData[tpvName].DOMid)
-            document.getElementById(displayData[tpvName].DOMid).style.display =
-              "none";
-          break;
-        }
-        if (!tpv.position || !tpv.position.value) break; //If there are no coordinates, we cannot calculate the further
-        displayNextPoint();
-        break;
-
       case "speed":
       case "depth":
       case "airTemperature":
