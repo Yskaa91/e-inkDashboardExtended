@@ -135,14 +135,6 @@ body {
 /* Compass styles */
 #compass {
 	--center-icon-size: calc(var(--out-width)/10);
-	--collisionArrowWidthBig: var(--center-icon-size);
-	--collisionArrowLeftBig: calc(var(--out-width)/2 - var(--collisionArrowWidthBig)/2);
-	--collisionArrowWidthNormal: calc(var(--collisionArrowWidthBig)*0.75);
-	--collisionArrowLeftNormal: calc(var(--out-width)/2 - var(--collisionArrowWidthNormal)/2);
-	--collisionArrowWidthSmall: calc(var(--collisionArrowWidthBig)*0.5);
-	--collisionArrowLeftSmall: calc(var(--out-width)/2 - var(--collisionArrowWidthSmall)/2);
-	--collisionArrowWidthLitle: calc(var(--collisionArrowWidthBig)*0.3);
-	--collisionArrowLeftLitle: calc(var(--out-width)/2 - var(--collisionArrowWidthLitle)/2);
 	
 	/*border: solid red;*/
 	
@@ -279,7 +271,7 @@ body {
 	position: absolute;
 	top: 2px;
 	left: calc(var(--out-width)/2);
-	transform: translate(-25%, 0%) rotate(45deg);
+	transform: translate(-25%, 0%) rotate(30deg);
 }
 
 #max_upwind_angle_streak_r{
@@ -291,7 +283,31 @@ body {
 	position: absolute;
 	top: 2px;
 	left: calc(var(--out-width)/2);
-	transform: translate(-25%, 0%) rotate(-45deg);
+	transform: translate(-25%, 0%) rotate(-30deg);
+}
+
+#max_downwind_angle_streak_l{
+	/*border: solid red;*/
+
+	height: var(--out-width);
+	width: auto;
+
+	position: absolute;
+	top: 2px;
+	left: calc(var(--out-width)/2);
+	transform: translate(-25%, 0%) rotate(160deg);
+}
+
+#max_downwind_angle_streak_r{
+	/*border: solid red;*/
+
+	height: var(--out-width);
+	width: auto;
+
+	position: absolute;
+	top: 2px;
+	left: calc(var(--out-width)/2);
+	transform: translate(-25%, 0%) rotate(-160deg);
 }
 
 /* Central picture */
@@ -316,28 +332,6 @@ body {
 	left: calc(var(--center-icon-size)/2);
 	transform-origin: 0 calc(8/ 466*(var(--out-width) / 2 - var(--pico-font-size)));	/* regarding what to rotate */
 }
-
-
-#nextPointDirection {
-	/*border: solid red;*/
-	
-	position: absolute;
-	height: calc(var(--out-width)/2);
-	width: calc(var(--collisionArrowWidthLitle)*0.8);
-	top: 0;
-	left: calc(var(--collisionArrowLeftLitle)*1.02);
-	
-	transform-origin: bottom center;	/* regarding what to rotate */
-}
-#nextPointDirection svg {
-	/*border: solid green;*/
-	position: relative;
-	top: calc(0px - var(--collisionArrowWidthLitle)*0.25);
-	width: 100%;
-	vertical-align: top;
-}
-
-
 
 .blink{	
 	animation: blinker 1s step-start infinite;
