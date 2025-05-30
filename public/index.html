@@ -266,6 +266,15 @@
               NNW<br />|
             </div>
           </div>
+          <div id="nextPointDirection" style="display: none">
+            <svg
+              version="1.1"
+              viewBox="0 0 10 10"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <polygon fill="black" stroke="black" points="1,1 5,9 9,1" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -374,25 +383,30 @@
 
               // Leading to normal dimensions
               if (prop.value !== null && displayData[tpvName].multiplicator)
-                tmp =
-                  prop.value * displayData[tpvName].multiplicator;
+                tmp = prop.value * displayData[tpvName].multiplicator;
               else tmp = prop.value;
-              
+
               // Prevent tiny correction of the rotating components -> reduce frame refresh
-              if ((tpvName == "heading" || tpvName == "track" || tpvName == "wangle") && tpv[tpvName].value > 0) {
+              if (
+                (tpvName == "heading" ||
+                  tpvName == "track" ||
+                  tpvName == "wangle") &&
+                tpv[tpvName].value > 0
+              ) {
                 if (Math.abs(tpv[tpvName].value - tmp) > 1.0) {
-                  tpv[tpvName].value = tmp
+                  tpv[tpvName].value = tmp;
                 }
               } else {
-                tpv[tpvName].value = tmp
+                tpv[tpvName].value = tmp;
               }
-              
+
               if (tpvName == "wangle") {
                 if (wangle_smoothed < 0) {
-                  wangle_smoothed = tpv[tpvName].value
+                  wangle_smoothed = tpv[tpvName].value;
                 } else {
-                  wangle_smoothed = 0.3*tpv[tpvName].value + 0.7*wangle_smoothed
-                  tpv[tpvName].value = wangle_smoothed
+                  wangle_smoothed =
+                    0.3 * tpv[tpvName].value + 0.7 * wangle_smoothed;
+                  tpv[tpvName].value = wangle_smoothed;
                 }
               }
 

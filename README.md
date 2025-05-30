@@ -6,12 +6,12 @@
 
 **WARNING! No information shown or not shown by this application may serve as a basis for an action or inaction of the shipmaster.**
 
-## v. 0.5.4
+## v. 0.5.6
 Contents:  
 - [Features](#features)
 - - [Direction](#direction)
 - - [Wind](#wind)
-- - [Navigation](#navigation
+- - [Navigation](#navigation)
 - - [In screen corners](#in-screen-corners)
 - - [Data actuality](#data-actuality)
 - [Requirements](#requirements)
@@ -40,8 +40,7 @@ The vertical line indicates the course. The compass represent the heading. In ca
 The two 45 deg lines represent the tightest close haul angle.
 
 ### Wind
-If wind speed and wind direction information is available, a wind indicator will be displayed. The symbols of the pointer corresponds to that used in meteorology: a short stroke means a wind speed of 2.5 m/sec, a long stroke means 5 m/sec, and a triangle means 25 m/sec. Thus, the illustration shows wind speeds greater than or equal to 7.5 but less than 10 m/sec.  
-For your reference, the exact wind speed is indicated above the bottom edge of the screen.
+If wind speed and wind direction information is available, a wind indicator will be displayed.
 
 One of the following values may be specified as the wind:
 

@@ -1,22 +1,3 @@
-/*
-display()
-displayON()
-displayOFF()
-
-realWindSymbolUpdate(direction=0,speed=0)
-
-isValueNull(valueName,value)
-chkTPV(tpvName)
-
-bigBlock(block,bigStyleName)
-
-bearing(latlng1, latlng2)
-equirectangularDistance(from,to)
-
-generateUUID()
-getCookie(name)
-*/
-
 function display(changedTPV) {
   if (!changedTPV) changedTPV = Object.keys(displayData);
 
@@ -123,7 +104,7 @@ function display(changedTPV) {
         htmlBLock = document.getElementById(displayData[tpvName].DOMid);
         if (!tpv[tpvName] || tpv[tpvName].value === undefined) {
           // Disabling the block is too stringent for some viewers
-          // htmlBLock.style.display = "none"; 
+          // htmlBLock.style.display = "none";
           break;
         }
 
@@ -225,13 +206,19 @@ function display(changedTPV) {
         htmlBLock.innerHTML = str;
         break;
 
+      case "nextPoint": // Here it is possible to draw corners, but the label on the circle is also drawn
+        if (!tpv[tpvName] || !tpv[tpvName].value) break;
+        if (!tpv.position || !tpv.position.value) break; //If there are no coordinates, we cannot calculate the further
+        displayNextPoint();
+        break;
+
       case "speed":
       case "depth":
       case "airTemperature":
       case "airPressure":
       case "airHumidity":
       case "waterTemperature":
-	    case "windSpeedTrue":
+      case "windSpeedTrue":
       case "windSpeedApparent":
 
       default:
@@ -389,7 +376,6 @@ function bigBlock(block, bigStyleName) {
     compass.classList.add("opa");
   else compass.classList.remove("opa");
 } // end function bigBlock
-
 
 function bearing(latlng1, latlng2) {
   /* Returns azimuth from point 1 to point 2 */
